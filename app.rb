@@ -4,3 +4,5 @@ puts "| | | |"
 end
 
 
+#array of strings where each string is an input
+#hash where key is place on board and value is x or o or " "
