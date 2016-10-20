@@ -43,3 +43,28 @@
 # #     input.map!["", "", "", "", "", "", "", "", "", ""]
 # # end
 
+class TicTacToeBoard #naming the class
+    attr_reader :board
+    
+    def initialize
+        @board = Board.new
+    end
+
+    class Board
+        attr_reader :board, :empty_square
+
+        def initialize
+            @empty_square = " " #if the square has not been played it is empty
+            @board = Array.new(9, @empty_square) #makes an array of 9 " "'s
+        end
+        
+        def print_board
+            puts "\n"
+            @board.each_slice(3) {|row| puts row.join(' | ')} 
+            puts "\n"
+        end
+end
+
+
+TicTacToeBoard.new.board.print_board
+end
