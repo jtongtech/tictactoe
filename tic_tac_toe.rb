@@ -1,13 +1,24 @@
 class TicTacToeBoard #naming the class
-    attr_reader :board, :player1
+    attr_reader :board, :player_1, :player_2
     
     def initialize
         @board = Board.new
+        @player_1 = Player.new
+        @player_2 = Player.new
     end
 
     def player_names
         puts "Player 1 has entered the game!  Please enter your username" 
-        @player_1.name = gets.chomp
+        @player_1.name = gets.chomp #collects user input of name and removed last element of string
+        puts "Welcome #{@player_1}, you will be player X"
+        puts "\n"
+        @player_1.symbol = 'X' #sets player_1 symbol to X
+        puts "Player 2 has entered the game!  Please enter your username" 
+        @player_2.name = gets.chomp #collects user input of name and removed last element of string
+        puts "Welcome #{@player_2}, you will be player O"
+        puts "\n"
+        @player_2.symbol = 'O' #sets player_1 symbol to O
+        puts "\n"
     end
 
     class Board
@@ -24,7 +35,8 @@ class TicTacToeBoard #naming the class
             puts "\n"
         end
     end
+    Player = Struct.new(:name, :symbol)
 
 
-TicTacToeBoard.new.board.print_board
+TicTacToeBoard.new.player_names.board.print_board
 end
