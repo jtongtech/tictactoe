@@ -38,7 +38,7 @@ class Game #names the class
     def begin_game
         puts "#{@player_1.name}, it is your turn."
         @grid.print_grid #begins a new game!
-        take_turns
+        take_turns until game_over
     end 
 
     def take_turns
@@ -50,6 +50,7 @@ class Game #names the class
         input = get_valid_square
         @grid.update(input, player.symbol)
             @current_turn += 1
+        @grid.print_grid
         end
     
     def show_turn(player)
@@ -63,6 +64,10 @@ class Game #names the class
             input = gets.chomp.to_i - 1
         end
         input
+    end
+
+    def game_over
+        @current_turn > 9
     end
 
     class Board
