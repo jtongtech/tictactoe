@@ -7,17 +7,17 @@ class Game #names the class
         @player_2 = Player.new
     end
 
+    def play_game #this calls all of the other function to run the game
+        welcome
+        player_names
+        begin_game
+    end
+
     def welcome
         puts "\n"
         puts "****************************************"
         puts "* Welcome to Jeremy's Tic-Tac-Toe Game *"
         puts "****************************************"
-    end
-
-    def play_game
-        welcome
-        player_names
-        begin_game
     end
 
     def player_names
