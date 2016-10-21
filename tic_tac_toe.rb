@@ -55,10 +55,10 @@ class TicTacToeBoard #naming the class
         @player_1.name = gets.chomp
 
     class Board
-        attr_reader :board, :empty_square
+        attr_reader :board, :empty_cell
 
         def initialize
-            @empty_square = " " #if the square has not been played it is empty
+            @empty_square = "-" #if the square has not been played it is empty
             @board = Array.new(9, @empty_square) #makes an array of 9 " "'s
         end
         
@@ -67,6 +67,7 @@ class TicTacToeBoard #naming the class
             @board.each_slice(3) {|row| puts row.join(' | ')}  #breaks @board into sections of 3 and puts a new line between each section
             puts "\n"
         end
+    end
 end
 
 
