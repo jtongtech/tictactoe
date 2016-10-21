@@ -53,9 +53,10 @@ class TicTacToeBoard #naming the class
     def player_names
         puts "Player 1 has entered the game!  Please enter your username" 
         @player_1.name = gets.chomp
+    end
 
     class Board
-        attr_reader :board, :empty_cell
+        attr_reader :board, :empty_square
 
         def initialize
             @empty_square = "-" #if the square has not been played it is empty
@@ -68,7 +69,6 @@ class TicTacToeBoard #naming the class
             puts "\n"
         end
     end
-end
 
 
 TicTacToeBoard.new.board.print_board
