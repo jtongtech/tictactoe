@@ -56,4 +56,4 @@ class Game #names the class
     Player = Struct.new(:name, :symbol)
 end
 
-Game.new.play_game.print_grid
+Game.new.play_game
