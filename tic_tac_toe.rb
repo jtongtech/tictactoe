@@ -38,11 +38,20 @@ class Game #names the class
     def begin_game
         puts "#{@player_1.name}, it is your turn."
         @grid.print_grid #begins a new game!
+        take_turns
     end 
 
     def take_turns
         @current_turn.odd? ? turn(@player_1) : turn(@player_2) #if it is an odd turn it goes to player 1 and even goes to player 2
     end
+
+    def turn(player)
+        show_turn(player)
+        input = get_valid_square
+        @grid.update(input, player.symbol)
+            @current_turn += 1
+        end
+    
 
     class Board
         attr_reader :board, :empty_square
