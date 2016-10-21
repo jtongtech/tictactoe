@@ -39,6 +39,10 @@ class Game #names the class
         @grid.print_grid #begins a new game!
     end 
 
+    def take_turns
+        @current_turn.odd? ? turn(@player_1) : turn
+        end
+
     class Board
         attr_reader :board, :empty_square
 
