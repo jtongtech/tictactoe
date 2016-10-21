@@ -5,6 +5,7 @@ class Game #names the class
         @grid = Board.new
         @player_1 = Player.new
         @player_2 = Player.new
+        @current_turn = 1
     end
 
     def play_game #this calls all of the other function to run the game
@@ -40,8 +41,8 @@ class Game #names the class
     end 
 
     def take_turns
-        @current_turn.odd? ? turn(@player_1) : turn
-        end
+        @current_turn.odd? ? turn(@player_1) : turn(@player_2) #if it is an odd turn it goes to player 1 and even goes to player 2
+    end
 
     class Board
         attr_reader :board, :empty_square
