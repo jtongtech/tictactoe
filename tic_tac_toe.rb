@@ -52,6 +52,18 @@ class Game #names the class
             @current_turn += 1
         end
     
+    def show_turn(player)
+    puts "#{player.name} ('#{player.symbol}')"
+    end
+
+    def get_valid_square
+        input = nil
+        until (0..8).include?(input)
+            puts "Make your move.  1-3 is top row, left to right.  4-6 is the middle row, and 7-9 is the bottom:"
+            input = gets.chomp.to_i - 1
+        end
+        input
+    end
 
     class Board
         attr_reader :board, :empty_square
