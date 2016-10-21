@@ -17,6 +17,7 @@ class Game #names the class
     def play_game
         welcome
         player_names
+        begin_game
     end
 
     def player_names
@@ -32,6 +33,11 @@ class Game #names the class
         @player_2.symbol = 'O' #sets player_1 symbol to O
         puts "\n"
     end
+
+    def begin_game
+        puts "#{@player_1.name}, it is your turn."
+        @grid.print_grid #begins a new game!
+    end 
 
     class Board
         attr_reader :board, :empty_square
