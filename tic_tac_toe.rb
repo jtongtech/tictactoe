@@ -52,6 +52,9 @@ class Game #names the class
             @board.each_slice(3) {|row| puts row.join(' | ')}  #breaks @board into sections of 3 and puts a new line between each section
             puts "\n"
         end
+        def update(position, symbol)
+            if @board[position] == @empty_square
+                @Board[position] #YOU STOPPED HERE
     end
     Player = Struct.new(:name, :symbol)
 end
