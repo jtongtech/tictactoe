@@ -16,6 +16,7 @@ class Game #names the class
         player_names
         begin_game
         result
+        game_over
     end
 
     def welcome
@@ -83,6 +84,12 @@ class Game #names the class
 
     def game_over
         @current_turn > 9 || @winner
+    end
+
+    def game_over
+        puts "***********"
+        puts "*Game Over*"
+        puts "***********"
     end
 
     def result
