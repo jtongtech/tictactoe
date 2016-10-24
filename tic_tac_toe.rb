@@ -1,11 +1,14 @@
 class Game #names the class
     attr_reader :grid, :player_1, :player_2 #sets attributes for the class
     
+    @@wins = [[0, 1 ,2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+
     def initialize
         @grid = Board.new
         @player_1 = Player.new
         @player_2 = Player.new
         @current_turn = 1
+        @winner = nil
     end
 
     def play_game #this calls all of the other function to run the game
@@ -55,6 +58,7 @@ class Game #names the class
         end
         @grid.print_grid
         puts error
+        winner(player)
         end
     
     def show_turn(player)
@@ -70,8 +74,14 @@ class Game #names the class
         input
     end
 
+    def winner(player)
+        @@wins.each do |w|
+            @winner = player if w.all? {|a| @grid.board[a] == player.symbol}
+        end
+    end
+
     def game_over
-        @current_turn > 9
+        @current_turn > 9 || @winner
     end
 
     class Board
