@@ -15,6 +15,7 @@ class Game #names the class
         welcome
         player_names
         begin_game
+        result
     end
 
     def welcome
@@ -82,6 +83,14 @@ class Game #names the class
 
     def game_over
         @current_turn > 9 || @winner
+    end
+
+    def result
+        if @current_turn > 9 and !@winner
+            puts "Cat wins!"
+        else
+            puts "Congratulations!  #{@winner.name} reigns victorious!"
+        end
     end
 
     class Board
