@@ -48,9 +48,13 @@ class Game #names the class
     def turn(player)
         show_turn(player)
         input = get_valid_square
-        @grid.update(input, player.symbol)
+        if @grid.update(input, player.symbol)
             @current_turn += 1
+        else
+            error = "That square has already been played.  Please try to pay closer attention in the future."
+        end
         @grid.print_grid
+        puts error
         end
     
     def show_turn(player)
