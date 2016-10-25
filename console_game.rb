@@ -38,4 +38,8 @@ class ConsoleGame
     def get_move
         current_player.get_move(board.position_board)
     end
+
+    def make_move(move)
+        board.update(move, current_player.marker)
+    end
 end
