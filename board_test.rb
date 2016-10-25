@@ -8,22 +8,26 @@ class TestBoard < Minitest::Test
         assert_equal(["","","","","","","","",""], board.position_board)
     end
 
-    def test_update_board
+    def test_update_board_first_turn
        board = Board.new
        board.update(1, "X")
        assert_equal(["","X","","","","","","",""], board.position_board)
     end
-    def test_update_board_o
+    def test_update_board_second_turn
        board = Board.new
        board.position_board = ["","X","","","","","","",""]
        board.update(0, "O")
        assert_equal(["O","X","","","","","","",""], board.position_board)
     end
-    def test_update_board_postition_1_already_filled
+    def test_update_board_occupied_space
        board = Board.new
-       board.position_board = ["O","X","","","","","","",""]
-       board.update(0, "X")
-       assert_equal(["O","X","","","","","","",""], board.position_board)
-    end  
+       board.position_board = ["X","O","","","","","","",""]
+       assert_equal(false, board.valid_space?(0))
+    end
+    def test_update_board_unoccupied_space
+       board = Board.new
+       board.position_board = ["X","O","","","","","","",""]
+       assert_equal(true, board.valid_space?(2))
+    end    
 end
         
