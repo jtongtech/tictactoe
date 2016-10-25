@@ -24,5 +24,9 @@
             else
                 false
             end
-        end 
+        end
+        def full_board?
+            position_board.count("") == 0
+        end
+
 end

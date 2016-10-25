@@ -42,9 +42,21 @@ class TestBoard < Minitest::Test
        board = Board.new
        assert_equal(false, board.valid_input?("a"))
     end
+    
     def test_update_board_valid_input_5
        board = Board.new
        assert_equal(true, board.valid_input?("5"))
+    end
+
+    def test_full_board
+        board = Board.new
+        board.position_board = ["X","O","X","O","X","O","X","O","X"]
+        assert_equal(true, board.full_board?)
+    end
+    def test_full_board_not_full
+        board = Board.new
+        board.position_board = ["","","X","O","X","O","X","O","X"]
+        assert_equal(false, board.full_board?)
     end
 end
         
