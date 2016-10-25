@@ -35,4 +35,7 @@ class ConsoleGame
         puts ""
     end
     #need a few more methods in this class
+    def get_move
+        current_player.get_move(board.position_board)
+    end
 end
