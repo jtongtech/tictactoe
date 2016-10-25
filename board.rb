@@ -12,20 +12,17 @@
         end
         
         def valid_space?(position)
-            if @position_board[position] != ""
+            if @position_board[position.to_i] != ""
                 false
             else
                 true
             end
         end
         def valid_input?(position)
-            position >= 0 && position <= 8
-        end 
-        def intiger?(position)
-            if position =~ /^[0-9]/
+            if position =~ /^[0-8]/ && position >= "0" && position <= "8" && position =~ (/\d/)
                 true
             else
                 false
             end
-        end
+        end 
 end

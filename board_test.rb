@@ -24,23 +24,27 @@ class TestBoard < Minitest::Test
     def test_update_board_occupied_space
        board = Board.new
        board.position_board = ["X","O","","","","","","",""]
-       assert_equal(false, board.valid_space?(0))
+       assert_equal(false, board.valid_space?("0"))
     end
     
     def test_update_board_unoccupied_space
        board = Board.new
        board.position_board = ["X","O","","","","","","",""]
-       assert_equal(true, board.valid_space?(2))
+       assert_equal(true, board.valid_space?("2"))
     end
 
     def test_update_board_valid_input
        board = Board.new
-       assert_equal(false, board.valid_input?(10))
+       assert_equal(false, board.valid_input?("10"))
     end 
 
     def test_update_board_invalid_input
        board = Board.new
-       assert_equal(false, board.intiger?("a"))
-    end 
+       assert_equal(false, board.valid_input?("a"))
+    end
+    def test_update_board_valid_input_5
+       board = Board.new
+       assert_equal(true, board.valid_input?("5"))
+    end
 end
         
