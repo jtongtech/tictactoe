@@ -17,7 +17,7 @@ class TestBoard < Minitest::Test
     def test_update_board_second_turn
        board = Board.new
        board.position_board = ["","X","","","","","","",""]
-       board.update(0, "O")
+       board.update("0", "O")
        assert_equal(["O","X","","","","","","",""], board.position_board)
     end
     

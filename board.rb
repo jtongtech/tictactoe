@@ -8,7 +8,7 @@
         end
         
         def update(position, symbol) #this is how to space is updated
-            @position_board[position] = symbol
+            @position_board[position.to_i] = symbol
         end
         
         def valid_space?(position)
@@ -19,7 +19,7 @@
             end
         end
         def valid_input?(position)
-            if position =~ /^[0-8]/ && position >= "0" && position <= "8" && position =~ (/\d/)
+            if position =~ /^[0-8]/ && position.to_i >= 0 && position.to_i <= 8 && position =~ (/\d/)
                 true
             else
                 false
