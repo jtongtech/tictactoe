@@ -18,6 +18,12 @@ class TestBoard < Minitest::Test
        board.position_board = ["","X","","","","","","",""]
        board.update(0, "O")
        assert_equal(["O","X","","","","","","",""], board.position_board)
-    end       
+    end
+    def test_update_board_postition_1_already_filled
+       board = Board.new
+       board.position_board = ["O","X","","","","","","",""]
+       board.update(0, "X")
+       assert_equal(["O","X","","","","","","",""], board.position_board)
+    end  
 end
         
