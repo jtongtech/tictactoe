@@ -31,5 +31,6 @@
         def winner?(symbol)
             position_board[0] == symbol && position_board[1] == symbol && position_board[2] == symbol || position_board[3] == symbol && position_board[4] == symbol && position_board[5] == symbol || position_board[6] == symbol && position_board[7] == symbol && position_board[8] == symbol || position_board[0] == symbol && position_board[3] == symbol && position_board[6] == symbol || position_board[1] == symbol && position_board[4] == symbol && position_board[7] == symbol || position_board[2] == symbol && position_board[5] == symbol && position_board[8] == symbol || position_board[0] == symbol && position_board[4] == symbol && position_board[8] == symbol || position_board[2] == symbol && position_board[4] == symbol && position_board[6] == symbol
         end
+        
 
 end
