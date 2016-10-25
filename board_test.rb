@@ -53,10 +53,17 @@ class TestBoard < Minitest::Test
         board.position_board = ["X","O","X","O","X","O","X","O","X"]
         assert_equal(true, board.full_board?)
     end
+   
     def test_full_board_not_full
         board = Board.new
         board.position_board = ["","","X","O","X","O","X","O","X"]
         assert_equal(false, board.full_board?)
+    end
+
+    def test_for_winner
+        board = Board.new()
+        board.position_board = ["X","X","X","","","","","",""]
+        assert_equal(true, board.winner?)
     end
 end
         

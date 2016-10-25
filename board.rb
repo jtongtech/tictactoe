@@ -28,5 +28,8 @@
         def full_board?
             position_board.count("") == 0
         end
+        def winner?
+            position_board[0] == "X" && position_board[1] == "X" && position_board[2] == "X"
+        end
 
 end
