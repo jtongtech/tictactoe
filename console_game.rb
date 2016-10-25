@@ -34,4 +34,5 @@ class ConsoleGame
         puts " #{board.position_board[7]} | #{board.position_board[8]} | #{board.position_board[9]} "
         puts ""
     end
+    #need a few more methods in this class
 end
