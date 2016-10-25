@@ -21,4 +21,11 @@
         def valid_input?(position)
             position >= 0 && position <= 8
         end 
+        def intiger?(position)
+            if position =~ /^[0-9]/
+                true
+            else
+                false
+            end
+        end
 end
