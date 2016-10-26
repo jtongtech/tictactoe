@@ -4,7 +4,7 @@ game = ConsoleGame.new(Human.new("X"), (Human.new("O")))
 
 game.print_board
 
-def loop
+def loop_game
     if ConsoleGame.counter % 2 == 0
         ConsoleGame.player_1.move
     else
@@ -13,7 +13,7 @@ def loop
     if board.full_board?
         puts "Tie Game"
     else
-        loop
+        loop_game
     end
 end
 
@@ -25,6 +25,6 @@ move = game.get_move
 
 game.make_move(move)
 
-game.print_board.loop
+game.print_board.loop_game
 
 #loop this and make it use the other methods
