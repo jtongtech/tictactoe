@@ -1,5 +1,8 @@
 require_relative "console_game.rb"
 
+until game.game_over
+
+
 game = ConsoleGame.new(Human.new("X"), (Human.new("O")))
 
 game.print_board
