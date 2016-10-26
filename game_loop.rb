@@ -25,6 +25,10 @@ move = game.get_move
 
 game.make_move(move)
 
-game.print_board.loop_game
+game.print_board
+
+game.make_move(move)
+
+game.print_board
 
 #loop this and make it use the other methods
