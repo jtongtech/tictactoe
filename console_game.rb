@@ -4,13 +4,15 @@ require_relative "console_human.rb"
 #gameplay functions
 
 class ConsoleGame
-    attr_accessor :board, :player_1, :player_2, :current_player
+    attr_accessor :board, :player_1, :player_2, :current_player, :counter
 
     def initialize(player_1, player_2)
         @board = Board.new
         @player_1 = player_1
         @player_2 = player_2
         @current_player = player_1
+        @counter = 1
+
     end
 
     def print_board
@@ -41,5 +43,6 @@ class ConsoleGame
 
     def make_move(move)
         board.update(move, current_player.marker)
+        counter = counter.to_i + 1
     end
 end
