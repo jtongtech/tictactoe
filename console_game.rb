@@ -17,11 +17,11 @@ class ConsoleGame
 
     end
 
-    def change_player
-		if @current_player == player_1
-			@current_player = player_2
-		else
-			@current_player = player_1
+   def change_player
+        if current_player == player_1
+            @current_player = player_2
+        else
+            @current_player = player_1
         end
     end
 
@@ -70,5 +70,14 @@ class ConsoleGame
     def make_move(move)
         board.update(move, current_player.marker)
         counter = counter.to_i + 1
+    end
+    
+    def game_over?
+        if board.full_board?(board.position_board)
+            puts "You tied!"
+        elsif
+            board.winner?(board.position_board)
+            puts "#{current_player} wins!"
+        end
     end
 end

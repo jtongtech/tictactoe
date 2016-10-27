@@ -9,12 +9,25 @@ class TestConsoleGame < Minitest::Test
         player = Human.new("X")
         assert_equal("X", player.marker)
     end
-    def test_is_turn_being_taken
-        player = Human.new("X")
-        current_player = player_1
-        current_player_1.symbol = "X"
-        Board.winner?(current_player.symbol) == false
-        Board.full_board? == false
-        assert_equal(player_2, board_status(current_player))
+    def test_for_human_p1_and_p2
+        p1 = Human.new("X")
+        p2 = Human.new("O")
+        game = ConsoleGame.new(p1, p2)
+        assert_equal("X", game.p1.marker)
+        assert_equal("O", game.p2.marker)
+    end
+    def test_for_current_player
+        p1 = Human.new("X")
+        p2 = Human.new("O")
+        game = ConsoleGame.new(p1, p2)
+        assert_equal(p1, game.current_player)
+        assert_equal("X", game.current_player.marker)
+    end
+    def test_for_changing_current_player
+        p1 = Human.new("X")
+        p2 = Human.new("O")
+        game = ConsoleGame.new(p1, p2)
+        game.change_player
+        assert_equal(p2, game.current_player)
     end
 end
