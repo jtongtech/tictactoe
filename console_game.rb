@@ -35,7 +35,7 @@ class ConsoleGame
 
 	 	"#{change_player}"
 
-	 	if board.winner?(current_player.symbol) == false && board.full_board?() == false
+	 	if board.winner?(current_player.symbol) == false && board.full_board? == false
 			puts "It is #{player.symbol} turn."
 		end	
 	end

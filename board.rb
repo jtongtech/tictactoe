@@ -25,12 +25,20 @@
                 false
             end
         end
-        def full_board?
-            position_board.count("") == 0
-        end
-        def winner?(symbol)
-            position_board[0] == symbol && position_board[1] == symbol && position_board[2] == symbol || position_board[3] == symbol && position_board[4] == symbol && position_board[5] == symbol || position_board[6] == symbol && position_board[7] == symbol && position_board[8] == symbol || position_board[0] == symbol && position_board[3] == symbol && position_board[6] == symbol || position_board[1] == symbol && position_board[4] == symbol && position_board[7] == symbol || position_board[2] == symbol && position_board[5] == symbol && position_board[8] == symbol || position_board[0] == symbol && position_board[4] == symbol && position_board[8] == symbol || position_board[2] == symbol && position_board[4] == symbol && position_board[6] == symbol
-        end
+    def full_board?(board)
+        board.count("") == 0
+    end
+
+    def winner?(symbol)
+        board[0] == symbol && board[1] == symbol && board[2] == symbol ||
+        board[3] == symbol && board[4] == symbol && board[5] == symbol ||
+        board[6] == symbol && board[7] == symbol && board[8] == symbol ||
+        board[0] == symbol && board[3] == symbol && board[6] == symbol ||
+        board[1] == symbol && board[4] == symbol && board[7] == symbol ||
+        board[2] == symbol && board[5] == symbol && board[8] == symbol ||
+        board[0] == symbol && board[4] == symbol && board[8] == symbol ||
+        board[2] == symbol && board[4] == symbol && board[6] == symbol
+    end
         
 
 end
