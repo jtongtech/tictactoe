@@ -1,19 +1,44 @@
 require_relative "board.rb"
 require_relative "console_human.rb"
 
+
 #gameplay functions
 
 class ConsoleGame
-    attr_accessor :board, :player_1, :player_2, :current_player, :counter
+    attr_accessor :board, :player_1, :player_2, :current_player, :current_turn, :counter
 
     def initialize(player_1, player_2)
         @board = Board.new
         @player_1 = player_1
         @player_2 = player_2
         @current_player = player_1
+        @current_turn = 1
         @counter = 1
 
     end
+
+    def change_player
+		if @current_player == player_1
+			@current_player = player_2
+		else
+			@current_player = player_1
+        end
+    end
+
+    def board_status()
+	 	puts " #{board.position_board[0]} | #{board.position_board[1]} | #{board.position_board[2]} "
+	 	puts "-----------"
+	 	puts " #{board.position_board[3]} | #{board.position_board[4]} | #{board.position_board[5]} "
+	 	puts "-----------"
+	 	puts " #{board.position_board[6]} | #{board.position_board[7]} | #{board.position_board[8]} "
+	 	puts
+
+	 	"#{change_player}"
+
+	 	if board.winner?(current_player.marker) == false && board.full_board?() == false
+			puts "It is #{player.marker} turn."
+		end	
+	end
 
     def print_board
         puts ""
@@ -37,6 +62,7 @@ class ConsoleGame
         puts ""
     end
     #need a few more methods in this class
+
     def get_move
         current_player.get_move(board.position_board)
     end
