@@ -136,12 +136,15 @@ end
 #     end
 
 #     def game_over?
-#         if board.winner?(current_player.marker)
-#             puts "#{current_player} wins!"
-#         elsif
-#             board.full_board?
-#             puts "You tied!"
-#         end
+#         board.winner?(current_player.marker) ||  board.full_board?        
 #     end
 
+#     def end_message
+#         if board.winner?(current_player.marker)
+#             puts "#{current_player.marker} wins!"
+#         else
+#             board.full_board?
+#             puts  "You tied!"
+#         end
+#     end
 # end
