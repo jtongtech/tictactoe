@@ -72,12 +72,7 @@ class ConsoleGame
     end
     
     def game_over?
-        if board.full_board?(board.position_board)
-            puts "You tied!"
-        elsif
-            board.winner?(board.position_board)
-            puts "#{current_player} wins!"
-        end
+        board.winner?(current_player.marker) || board.full_board?
     end
 end
 
