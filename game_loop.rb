@@ -1,6 +1,6 @@
 require_relative "console_game.rb"
 
-game = ConsoleGame.new(Human.new("x"), Human.new("o"))
+game = ConsoleGame.new(Human.new("X"), Human.new("O"))
 
 until game.game_over?
     game.print_board
@@ -12,7 +12,9 @@ end
 
 # require_relative "console_game.rb"
 
-# game = Game.new(Human.new("x"), Human.new("o"))
+# who = [SequentialAi.new("o"), RandomAi.new("o")].sample
+
+# game = Game.new(Human.new("x"), SequentialAi.new("o"))
 
 # until game.game_over?
 #     game.change_player
@@ -23,6 +25,3 @@ end
 # end
 
 # game.end_message
-
-
-# # Tie 142563789
