@@ -44,7 +44,7 @@ class ConsoleGame
         puts ""
         puts "Let's get started!'"
         puts ""
-        puts "Sample board with numbers:"
+        puts "Game board with numbers:"
         puts ""
         puts " 1 | 2 | 3 "
         puts "---+---+---"
@@ -69,7 +69,6 @@ class ConsoleGame
 
     def make_move(move)
         board.update(move, current_player.marker)
-        counter = counter.to_i + 1
     end
     
     def game_over?
@@ -84,6 +83,8 @@ end
 
 # require_relative "board.rb"
 # require_relative "console_human.rb"
+# require_relative "random_ai.rb"
+# require_relative "sequential_ai.rb"
 
 # class Game
 #     attr_accessor :board, :player_1, :player_2, :current_player
@@ -123,6 +124,8 @@ end
 #     #{board.board[3]} | #{board.board[4]} | #{board.board[5]}
 #     ---------
 #     #{board.board[6]} | #{board.board[7]} | #{board.board[8]}
+
+#     #{current_player.marker} --- Its your move
         
 #         """
 #     end
