@@ -10,6 +10,8 @@ until game.game_over?
     game.print_board
 end
 
+game.end_message
+
 # require_relative "console_game.rb"
 
 # who = [SequentialAi.new("o"), RandomAi.new("o")].sample
