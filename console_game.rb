@@ -78,7 +78,6 @@ class ConsoleGame
         if board.winner?(current_player.marker)
             puts "#{current_player.marker} is victorious!"
         else
-            board.full_board?
             puts "Cat wins... You tied. :'("
         end
     end
