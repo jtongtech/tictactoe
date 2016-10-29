@@ -3,6 +3,7 @@ require_relative "console_game.rb"
 game = ConsoleGame.new(Human.new("X"), Human.new("O"))
 
 until game.game_over?
+    game.change_player
     game.print_board
     move = game.get_move
     game.make_move(move)
