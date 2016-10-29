@@ -8,7 +8,6 @@ until game.game_over?
     move = game.get_move
     game.make_move(move)
     game.print_board
-    game.change_player
 end
 
 # require_relative "console_game.rb"

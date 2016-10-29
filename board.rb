@@ -25,7 +25,7 @@
                 false
             end
         end
-    def full_board?(board)
+    def full_board?
         board.count("") == 0
     end
 
