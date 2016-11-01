@@ -16,7 +16,7 @@ class TestUnbeatableAi < Minitest::Test
 
     def test_for_available_winning_space_at_0
         player = UnbeatableAi.new("X")
-        assert_equal(true, [0,1,2,3,4,5,6,7,8].include?(player.get_move(["", "", "", "", "", "", "", "", ""])))
+        assert_equal(0, player.get_move(["", "X", "X", "", "", "", "", "", ""]))
     end
 
 
