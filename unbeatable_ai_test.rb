@@ -19,6 +19,10 @@ class TestUnbeatableAi < Minitest::Test
         assert_equal(0, player.get_move(["", "X", "X", "", "", "", "", "", ""]))
     end
 
+    def test_for_available_winning_space_at_5
+        player = UnbeatableAi.new("X")
+        assert_equal(5, player.get_move(["", "", "", "X", "", "X", "", "", ""]))
+    end
 
     # def test_make_a_move
     #     player = SequentialAi.new("x")
