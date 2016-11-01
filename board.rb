@@ -19,7 +19,7 @@
             end
         end
         def valid_input?(position)
-            if position =~ /^[0-8]/ && position.to_i >= 0 && position.to_i <= 8 && position =~ (/\d/)
+            if position =~ /^[0-8]/ && position.to_i >= 1 && position.to_i <= 8 && position =~ (/\d/)
                 true
             else
                 false
