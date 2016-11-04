@@ -1,6 +1,6 @@
 require_relative "console_game.rb"
 
-game = ConsoleGame.new(Human.new("X"), Human.new("O"))
+game = Game.new
 
 until game.game_over?
     game.change_player
