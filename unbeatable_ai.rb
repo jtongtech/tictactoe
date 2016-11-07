@@ -18,8 +18,13 @@ class UnbeatableAi
     end
 
     def get_move(board)
-        move = 1
-         winning_combos = [
+        if check_for_win_or_block(board, marker)
+            move = check_for_win_or_block(board, marker)
+        end
+    end
+
+    def check_for_win_or_block(board, marker)
+         win_or_block_board_combos = [
              [board[0], board[1], board[2]],
              [board[3], board[4], board[5]],
              [board[6], board[7], board[8]],
@@ -29,14 +34,17 @@ class UnbeatableAi
              [board[0], board[4], board[8]],
              [board[2], board[4], board[6]]
              ]
-        winning_combos.each_with_index do |combo, index|
-            if combo.count(marker) == 2 && combo.count("") == 1
-                position = combo.index("")
-                move = winning_combos[index][position]
-            end
-        end
-        move
-    end
+        win_or_block_combos = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+        move = nil
+        win_or_block_board_combos.each_with_index do |combo, index|
+			if combo.count("") == 1
+				win_or_block = combo.index("")
+				i = index
+				move = win_or_block_combos[i][win_or_block]
+			end
+		end
+		move
+	end
 end
 
 # winning = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
