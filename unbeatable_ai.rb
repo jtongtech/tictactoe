@@ -78,15 +78,19 @@ class UnbeatableAi
         open_spot
     end
     def check_for_center(board)
-        if board[4] = " "
+        if board[4] == " "
             @open_spot = 4
         end
     end
     def check_for_empty_corner(board)
-        corners = [board[0], board[2], board[6], board[8]]
-        board[2] = corners.index(" ")
-        puts "corner_move is #{corner_move}"
-        @open_spot = corner_move
+        corners = [0, 2, 6, 8]
+        corners.each do |corner|
+            if board[corner] == " "
+                @open_spot = corner
+                break
+            end
+        end
+    open_spot
     end
 end
 
