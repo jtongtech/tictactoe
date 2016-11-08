@@ -6,7 +6,7 @@ class RandomAi
     end
 
 	def valid_space?(board, choice)
-		board[choice] == ""
+		board[choice] == " "
 	end
 
     def get_move(board)

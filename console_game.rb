@@ -9,7 +9,7 @@ class Game
 
     def initialize
         @board = Board.new
-        @player_1 = Human.new("X")
+        @player_1 = Human.new("x")
         @player_2 = select_player_2
         @current_player = player_2
     end
@@ -29,7 +29,7 @@ class Game
         """
         who = {1 => Human, 2 => RandomAi, 3 => SequentialAi, 4 => UnbeatableAi}
         choice = gets.chomp.to_i
-        who[choice].new("O")    
+        player = who[choice].new("o")    
     end
 
     def change_player
@@ -55,11 +55,11 @@ class Game
         
     Game Board:
         
-    #{board.board[0]} | #{board.board[1]} | #{board.board[2]}
-    ---------
-    #{board.board[3]} | #{board.board[4]} | #{board.board[5]}
-    ---------
-    #{board.board[6]} | #{board.board[7]} | #{board.board[8]}
+     #{board.board[0]} | #{board.board[1]} | #{board.board[2]}
+    -----------
+     #{board.board[3]} | #{board.board[4]} | #{board.board[5]}
+    -----------
+     #{board.board[6]} | #{board.board[7]} | #{board.board[8]}
 
     #{current_player.marker} --- Its your move
         

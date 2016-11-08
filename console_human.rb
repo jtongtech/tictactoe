@@ -9,7 +9,7 @@ class Human
         puts "Make your move!"
         move = gets.chomp.to_i
         move = move - 1
-        if board[move] == "" && move >= 0
+        if board[move] == " " && move >= 0
             move
         else
             puts "Try again!"

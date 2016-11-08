@@ -6,6 +6,6 @@ class SequentialAi
     end
 
     def get_move(board)
-		board.index("")
+		board.index(" ")
 	end
 end
