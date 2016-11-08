@@ -53,6 +53,8 @@ class TestUnbeatableAi < Minitest::Test
         assert_equal(2, player.check_for_empty_corner(["x", " ", " ", " ", "x", " ", " ", " ", " "]))
     end
 
+    def test_for_fork_
+
     # def test_valid_move
     #     player = UnbeatableAi.new("x")
     #     move = player.get_move(Array.new(9, " "))
