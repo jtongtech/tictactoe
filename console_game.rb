@@ -29,7 +29,7 @@ class Game
         """
         who = {1 => Human, 2 => RandomAi, 3 => SequentialAi, 4 => UnbeatableAi}
         choice = gets.chomp.to_i
-        player = who[choice].new("O")    
+        who[choice].new("O")    
     end
 
     def change_player
