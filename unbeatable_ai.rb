@@ -42,8 +42,10 @@ class UnbeatableAi
             move = open_spot
         elsif potential_win_block(board, player_marker) <= 8
             move = open_spot
-        else
+        elsif
             move = check_for_center(board)
+        else
+            move = take_corner(board)
         end
         move
     end
@@ -77,7 +79,7 @@ class UnbeatableAi
     end
     def check_for_center(board)
         if board[4] = " "
-            move = 4
+            open_spot = 4
         end
     end
 end

@@ -48,6 +48,11 @@ class TestUnbeatableAi < Minitest::Test
         assert_equal(4, player.get_move([" ", " ", " ", " ", " ", " ", " ", " ", " "]))
     end
 
+    def test_for_if_center_notavailable_take_corner
+        player = UnbeatableAi.new("o")
+        assert_equal(1, player.get_move([" ", " ", " ", " ", "x", " ", " ", " ", " "]))
+    end
+
     # def test_valid_move
     #     player = UnbeatableAi.new("x")
     #     move = player.get_move(Array.new(9, " "))
