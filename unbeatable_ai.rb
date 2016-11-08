@@ -26,6 +26,7 @@ class UnbeatableAi
         @marker = marker
         @open_spot = 10    
     end
+    
 
     def get_move(board)
         @open_spot = 10
@@ -42,7 +43,7 @@ class UnbeatableAi
         elsif potential_win_block(board, player_marker) <= 8
             move = open_spot
         else
-            move = board.index(" ")
+            move = check_for_center(board)
         end
         move
     end
@@ -73,6 +74,11 @@ class UnbeatableAi
             end
         end
         open_spot
+    end
+    def check_for_center(board)
+        if board[4] = " "
+            move = 4
+        end
     end
 end
 
