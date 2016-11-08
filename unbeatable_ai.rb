@@ -42,10 +42,10 @@ class UnbeatableAi
             move = open_spot
         elsif potential_win_block(board, player_marker) <= 8
             move = open_spot
-        elsif
-            move = check_for_center(board)
-        else
-            move = take_corner(board)
+        elsif check_for_center(board)
+            move = open_spot
+        else check_for_empty_corner(board)
+            move = open_spot
         end
         move
     end
@@ -79,8 +79,14 @@ class UnbeatableAi
     end
     def check_for_center(board)
         if board[4] = " "
-            open_spot = 4
+            @open_spot = 4
         end
+    end
+    def check_for_empty_corner(board)
+        corners = [board[0], board[2], board[6], board[8]]
+        board[2] = corners.index(" ")
+        puts "corner_move is #{corner_move}"
+        @open_spot = corner_move
     end
 end
 

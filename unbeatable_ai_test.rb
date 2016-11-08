@@ -49,8 +49,8 @@ class TestUnbeatableAi < Minitest::Test
     end
 
     def test_for_if_center_notavailable_take_corner
-        player = UnbeatableAi.new("o")
-        assert_equal(1, player.get_move([" ", " ", " ", " ", "x", " ", " ", " ", " "]))
+        player = UnbeatableAi.new("x")
+        assert_equal(2, player.check_for_empty_corner(["x", " ", " ", " ", "x", " ", " ", " ", " "]))
     end
 
     # def test_valid_move
