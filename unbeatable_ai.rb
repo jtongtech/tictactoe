@@ -86,8 +86,8 @@ class UnbeatableAi
     end
 
     def check_for_winning_fork_option(board)
-        if board[1] == " "
-            @open_spot = 1
+        if board[0] == " "
+            @open_spot = 0
         elsif board[8] == " "
             @open_spot = 8
         elsif board[3] == " "

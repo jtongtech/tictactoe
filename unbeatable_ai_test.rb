@@ -55,7 +55,7 @@ class TestUnbeatableAi < Minitest::Test
 
     def test_for_fork_creation
         player = UnbeatableAi.new("x")
-        assert_equal(8, player.check_for_winning_fork_option(["x", " ", " ", " ", " ", " ", " ", " ", " "]))
+        assert_equal(8, player.check_for_winning_fork_option(["x", " ", " ", " ", "x", " ", " ", " ", " "]))
     end
 end
 
