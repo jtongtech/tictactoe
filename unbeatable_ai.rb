@@ -40,10 +40,8 @@ class UnbeatableAi
 
         if potential_win_block(board, comp_marker) <= 8
             move = open_spot
-        elsif potential_win_block(board, player_marker) <= 8
-            move = open_spot
         elsif check_for_center(board)
-            move = open_spot
+            move = open_spot    
         elsif check_for_winning_fork_option(board)
             move = open_spot
         else check_for_empty_corner(board)
