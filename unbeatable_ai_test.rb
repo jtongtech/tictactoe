@@ -53,7 +53,11 @@ class TestUnbeatableAi < Minitest::Test
         assert_equal(2, player.check_for_empty_corner(["x", " ", " ", " ", "x", " ", " ", " ", " "]))
     end
 
-    def test_for_fork_
+    def test_for_fork_creation
+        player = UnbeatableAi.new("x")
+        assert_equal(8, player.check_for_winning_fork_option(["x", " ", " ", " ", " ", " ", " ", " ", " "]))
+    end
+end
 
     # def test_valid_move
     #     player = UnbeatableAi.new("x")
@@ -72,5 +76,3 @@ class TestUnbeatableAi < Minitest::Test
     #     move = 4
     #     assert_equal(4, player.get_move([" "," "," ","x"," ","x"," "," "," "]))
     # end
-
-end

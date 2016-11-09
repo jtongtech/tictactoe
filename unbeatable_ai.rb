@@ -44,6 +44,8 @@ class UnbeatableAi
             move = open_spot
         elsif check_for_center(board)
             move = open_spot
+        elsif check_for_winning_fork_option(board)
+            move = open_spot
         else check_for_empty_corner(board)
             move = open_spot
         end
@@ -82,6 +84,20 @@ class UnbeatableAi
             @open_spot = 4
         end
     end
+
+    def check_for_winning_fork_option(board)
+        if board[1] == " "
+            @open_spot = 1
+        elsif board[8] == " "
+            @open_spot = 8
+        elsif board[3] == " "
+            @open_spot = 3
+        else board[6] == " "
+            @open_spot = 3
+        end
+    end
+
+
     def check_for_empty_corner(board)
         corners = [0, 2, 6, 8]
         corners.each do |corner|

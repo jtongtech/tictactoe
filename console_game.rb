@@ -20,9 +20,9 @@ class Game
             Who would you like to play against?
 
             Press   1 - Human
-                    2 - Random AI
-                    3 - Sequential AI
-                    4 - Unbeatable AI
+                    2 - Medium AI
+                    3 - Easy AI
+                    4 - Hard AI
                     
             Then ENTER!
 
