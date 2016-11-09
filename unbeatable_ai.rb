@@ -93,7 +93,7 @@ class UnbeatableAi
         elsif board[3] == " "
             @open_spot = 3
         else board[6] == " "
-            @open_spot = 3
+            @open_spot = 6
         end
     end
 
