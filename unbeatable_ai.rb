@@ -140,7 +140,7 @@ class UnbeatableAi
 		i = []
 		
 		win_combinations(board).each_with_index do |forking_line, index|
-			if forking_line.count(marker) == 1 && forking_line.count("") == 2
+			if forking_line.count(marker) == 1 && forking_line.count(" ") == 2
 
 				i.push(index)
 			end
@@ -158,7 +158,7 @@ class UnbeatableAi
 		fork_spot = fork_spot.flatten.sort
 
 		fork_spot.each do |spot|
-			if board[spot] == ""
+			if board[spot] == " "
 				fork_line.push(spot)
 			end
 		end
@@ -186,7 +186,7 @@ class UnbeatableAi
 		i = []
 		
 		win_combinations(board).each_with_index do |forking_line, index|
-			if forking_line.count(player_marker) == 1 && forking_line.count("") == 2
+			if forking_line.count(player_marker) == 1 && forking_line.count(" ") == 2
 				fork_line = forking_line
 				i.push(index)
 			end
@@ -200,7 +200,7 @@ class UnbeatableAi
 
 		block_spot = []
 		fork_spot.each do |spot|
-			if board[spot] == ""
+			if board[spot] == " "
 				block_spot.push(spot)
 			end
 		end
