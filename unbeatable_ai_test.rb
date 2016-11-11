@@ -53,19 +53,44 @@ class TestUnbeatableAi < Minitest::Test
         assert_equal(2, player.check_for_empty_corner(["x", " ", " ", " ", "x", " ", " ", " ", " "]))
     end
 
-    def test_for_fork_creation
-        player = UnbeatableAi.new("x")
-        assert_equal(8, player.check_for_winning_fork_option(["x", " ", " ", " ", "x", " ", " ", " ", " "]))
+    # def test_for_fork_creation
+    #     player = UnbeatableAi.new("x")
+    #     assert_equal(8, player.check_for_winning_fork_option(["x", " ", " ", " ", "x", " ", " ", " ", " "]))
+    # end
+
+    # def test_for_fork_creation
+    #     player = UnbeatableAi.new("x")
+    #     assert_equal(6, player.check_for_winning_fork_option(["x", " ", " ", "o", "x", " ", " ", " ", "o"]))
+    # end
+
+    # def test_for_o_rewriting_position
+    #     player = UnbeatableAi.new("x")
+    #     assert_equal(6, player.get_move(["o", " ", "x", "x", "x", "o", "o", " ", "x"]))
+    # end
+
+    def test_X_opponent_corner_returns_2
+        player = UnbeatableAi.new("X")
+        assert_equal(2, player.opponent_corner([" "," "," "," "," "," ","O"," "," "]))
     end
 
-    def test_for_fork_creation
-        player = UnbeatableAi.new("x")
-        assert_equal(6, player.check_for_winning_fork_option(["x", " ", " ", "o", "x", " ", " ", " ", "o"]))
+    def test_X_opponent_corner_returns_6
+        player = UnbeatableAi.new("X")
+        assert_equal(6, player.opponent_corner([" "," ","O"," "," "," "," "," "," "]))
     end
 
-    def test_for_o_rewriting_position
-        player = UnbeatableAi.new("x")
-        assert_equal(7, player.check_for_winning_fork_option(["o", " ", "x", "x", "x", "o", "o", " ", "x"]))
+    def test_X_opponent_corner_returns_0
+        player = UnbeatableAi.new("X")
+        assert_equal(0, player.opponent_corner([" "," "," "," "," "," "," "," ","O"]))
+    end
+
+    def test_for_empty_corner_returns_0
+        player = UnbeatableAi.new("O")
+        assert_equal(0, player.check_for_empty_corner([" ", " ", " ", " ", " ", " ", " ", " ", " "]))
+    end
+
+    def test_for_empty_corner_returns_2
+        player = UnbeatableAi.new("O")
+        assert_equal(2, player.check_for_empty_corner(["X", " ", " ", " ", "O", "X", " ", " ", " "]))
     end
 end
 

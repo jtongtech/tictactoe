@@ -42,12 +42,22 @@ class UnbeatableAi
             move = open_spot
         elsif potential_win_block(board, player_marker) <= 8
             move = open_spot
+         elsif check_for_fork(board) <= 8
+                # move = open_spot
+                move = check_for_fork(board)
+
+        elsif block_opponents_fork(board, comp_marker) <= 8
+                # move = open_spot
+            move = block_opponents_fork(board, comp_marker)
+
         elsif check_for_center(board)
             move = open_spot    
-        elsif check_for_winning_fork_option(board)
+        # elsif check_for_winning_fork_option(board)
+        #     move = open_spot
+        elsif check_for_empty_corner(board)
             move = open_spot
-        else check_for_empty_corner(board)
-            move = open_spot
+        else
+            move = @open_spot
         end
         move
     end
@@ -84,21 +94,120 @@ class UnbeatableAi
             @open_spot = 4
         end
     end
+    def opponent_corner(board)
+		@open_spot = 10
+        comp_marker = marker
+		
+		if comp_marker == "O"
+			player_marker = "X"
+		else
+			player_marker = "O"
+		end
 
-    def check_for_winning_fork_option(board)
-        if board[0] == " "
-            @open_spot = 0
-        elsif board[8] == " "
-            @open_spot = 8
-        elsif board[3] == " "
-            @open_spot = 3
-        else board[6] == " "
-            @open_spot = 6
+		if board[0] == player_marker
+			@open_spot = 8
+            move = 8
+		elsif board[2] == player_marker
+			@open_spot = 6
+            move = 6
+		elsif board[6] == player_marker
+			@open_spot = 2
+            move = 2
+		elsif board[8] == player_marker
+			@open_spot = 0
+            move = 0
+		end
+        open_spot
+	end
+
+    # def check_for_winning_fork_option(board)
+    #     if board[0] == " "
+    #         @open_spot = 0
+    #     elsif board[8] == " "
+    #         @open_spot = 8
+    #     elsif board[3] == " "
+    #         @open_spot = 3
+    #     else board[6] == " "
+    #         @open_spot = 6
+    #     end
+    # end
+    def check_for_fork(board)
+		@open_spot = 10
+		fork_line = []
+		fork_spot = []
+		i = []
+		
+		win_combinations(board).each_with_index do |forking_line, index|
+			if forking_line.count(marker) == 1 && forking_line.count("") == 2
+
+				i.push(index)
+			end
+		end
+
+		i.each do |index|
+			fork_spot.push(win_positions[index])
+		end
+
+		fork_spot = fork_spot.flatten.sort
+
+		fork_spot.each do |spot|
+			if board[spot] == ""
+				fork_line.push(spot)
+			end
+		end
+
+		if fork_line.detect { |match| fork_line.count(match) > 1 } == nil
+            open_spot = 10
+		else
+			open_spot = fork_line.detect { |match| fork_line.count(match) > 1 }
+		end
+        open_spot
+	end
+
+    def block_opponents_fork(board, comp_marker)
+		@open_spot = 10
+        comp_marker = marker
+
+		if comp_marker == "O"
+			player_marker = "X"
+		else
+			player_marker = "O"
+		end
+
+		fork_line = []
+		fork_spot = []
+		i = []
+		
+		win_combinations(board).each_with_index do |forking_line, index|
+			if forking_line.count(player_marker) == 1 && forking_line.count("") == 2
+				fork_line = forking_line
+				i.push(index)
+			end
+		end
+
+		i.each do |index|
+			fork_spot.push(win_positions[index])
+		end
+
+		fork_spot = fork_spot.flatten
+
+		block_spot = []
+		fork_spot.each do |spot|
+			if board[spot] == ""
+				block_spot.push(spot)
+			end
+		end
+
+        if block_spot.detect {|match| block_spot.count(match) > 1} == nil
+            open_spot = 10
+        else
+            open_spot = block_spot.detect {|match| block_spot.count(match) > 1}
         end
-    end
-
+        open_spot
+	end
 
     def check_for_empty_corner(board)
+        @open_spot = 10
         corners = [0, 2, 6, 8]
         corners.each do |corner|
             if board[corner] == " "
