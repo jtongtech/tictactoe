@@ -31,6 +31,7 @@ class UnbeatableAi
     def get_move(board)
         @open_spot = 10
         comp_marker = marker
+        random_move = rand(1..9)
 
         if comp_marker == "o"
             player_marker = "x"
@@ -56,8 +57,8 @@ class UnbeatableAi
         #     move = open_spot
         elsif check_for_empty_corner(board)
             move = open_spot
-        else
-            move = @open_spot
+        else 
+            random_move
         end
         move
     end
@@ -90,6 +91,7 @@ class UnbeatableAi
         open_spot
     end
     def check_for_center(board)
+        @open_spot = 10
         if board[4] == " "
             @open_spot = 4
         end
@@ -147,6 +149,11 @@ class UnbeatableAi
 		i.each do |index|
 			fork_spot.push(win_positions[index])
 		end
+
+# i = [8, 0, 4, 8]
+# i = [0, 4, 8, 8]
+
+# fork_line = [4, 8, 8]
 
 		fork_spot = fork_spot.flatten.sort
 
@@ -206,6 +213,18 @@ class UnbeatableAi
         open_spot
 	end
 
+    def check_for_empty_side(board)
+        @open_spot = 10
+        open_side = [1, 3, 5, 7]
+        open_side.each do |open_side|
+            if board[open_side] == " "
+                @open_spot = open_side
+                break
+            end
+        end
+    open_spot
+    end
+
     def check_for_empty_corner(board)
         @open_spot = 10
         corners = [0, 2, 6, 8]
@@ -213,10 +232,14 @@ class UnbeatableAi
             if board[corner] == " "
                 @open_spot = corner
                 break
+            else
+               check_for_empty_side(board)
             end
         end
     open_spot
     end
+
+    
 end
 
 # winning = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
