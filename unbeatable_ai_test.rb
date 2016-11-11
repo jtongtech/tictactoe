@@ -63,10 +63,10 @@ class TestUnbeatableAi < Minitest::Test
     #     assert_equal(6, player.check_for_winning_fork_option(["x", " ", " ", "o", "x", " ", " ", " ", "o"]))
     # end
 
-    def test_for_o_rewriting_position
-        player = UnbeatableAi.new("x")
-        assert_equal(6, player.get_move(["o", " ", "x", "x", "x", "o", "o", " ", "x"]))
-    end
+    # def test_for_o_rewriting_position
+    #     player = UnbeatableAi.new("x")
+    #     assert_equal(6, player.get_move(["o", " ", "x", "x", "x", "o", "o", " ", "x"]))
+    # end
 
     def test_X_opponent_corner_returns_2
         player = UnbeatableAi.new("X")
