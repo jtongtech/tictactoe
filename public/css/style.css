@@ -1,0 +1,16 @@
+.textcolor {color:saddlebrown;} 
+.textcolor1 {color:royalblue;}
+.textcolor2 {color:seagreen;}  
+/*class is started with a period*/
+li{display:inline; padding-right:1.0rem; font-size:1.0rem;}
+ul{text-align:center;}
+li{font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif}
+
+
+img {display: block; margin: auto; width: 40%;}
+/*the above line ceters the images*/
+
+.footer {position: absolute; right: 0; bottom: 0; left: 0; padding: 1rem; background-color: whitesmoke; text-align: center;}
+#marv {
+  display: block;
+}
