@@ -1,4 +1,6 @@
 /* Start of body css */
+ul{text-align:center;}
+
 body {
   margin: 0;
 }
@@ -84,9 +86,9 @@ p {
 }
 
 .board-data {
-  background: white;
+  background: red;
   font-size: 30px; 
-  border: none;
+  border: black;
 }
 
 /* Color of X placed on board and Player One */
