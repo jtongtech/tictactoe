@@ -1,14 +1,23 @@
-#make a board print to the screen
-def tic(*input)
-    positions = ["", "X", "", "", "", "", "", "", "", ""]
-    puts " #{positions[1]} | #{positions[2]} | #{positions[3]} "
-    puts "-----------"
-    puts " #{positions[4]} | #{positions[5]} | #{positions[6]} "
-    puts "-----------"
-    puts " #{positions[7]} | #{positions[8]} | #{positions[9]} "
+require 'sinatra'
+require_relative 'random_ai.rb'
+require_relative 'unbeatable_ai.rb'
+require_relative 'sequential_ai.rb'
+require_relative 'board.rb'
+
+enable :sessions
+
+ai = ""
+
+play_board = Board.new()
+
+get '/' do
+    erb :home
 end
 
-puts tic
+get '/rules' do
+    erb :rules
+end
 
-#array of strings where each string is an input
-#hash where key is place on board and value is x or o or " "
+get '/History' do
+    erb :history
+end
