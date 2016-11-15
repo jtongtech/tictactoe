@@ -21,3 +21,7 @@ end
 get '/history' do
     erb :history
 end
+
+get '/play_game' do
+    erb :play_game
+end
