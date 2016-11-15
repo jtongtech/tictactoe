@@ -4,11 +4,11 @@ require_relative 'unbeatable_ai.rb'
 require_relative 'sequential_ai.rb'
 require_relative 'board.rb'
 
-enable :sessions
+enable :session
 
 ai = ""
 
-play_board = Board.new()
+session[:board] = Board.new()
 
 get '/' do
     erb :home
@@ -23,5 +23,6 @@ get '/history' do
 end
 
 get '/play_game' do
-    erb :play_game
+    erb :play_game, :locals => {:board => session[:board]}
+    #the above saves your board and lets you pull it everytime you call it?  Pushes your board into the erb.
 end
