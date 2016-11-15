@@ -18,6 +18,6 @@ get '/rules' do
     erb :rules
 end
 
-get '/History' do
+get '/history' do
     erb :history
 end
