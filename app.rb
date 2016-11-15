@@ -46,3 +46,25 @@ get '/play_game' do
     erb :play_game, :locals => {:board => session[:board].board, :player_1_name => session[:player_1_name], :player_2_name => session[:player_2_name]}
     #the above saves your board and lets you pull it everytime you call it?  Pushes your board into the erb.  This is why mob helps i would have spent hours on that
 end
+
+post '/play_game' do
+    session[:player_2_name] = params[:player_2_name]
+	move = params[:square].to_i
+    
+end 
+
+
+move = params[:square].to_i
+
+	if session[:board].valid_space?(move)
+		redirect '/make_move?move=' + move.to_s
+	else
+		redirect '/get_move'
+	end
+end
+
+something like
+
+get_player_move = game_loop(move)
+coins = change(input_amount_to_be_reduced )
+	stuff = hashconverter(coins)
