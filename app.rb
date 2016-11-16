@@ -63,8 +63,8 @@ move = params[:square].to_i
 	end
 end
 
-something like
+# something like
 
-get_player_move = game_loop(move)
-coins = change(input_amount_to_be_reduced )
-	stuff = hashconverter(coins)
+# get_player_move = game_loop(move)
+# coins = change(input_amount_to_be_reduced )
+# 	stuff = hashconverter(coins)
