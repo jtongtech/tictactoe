@@ -39,6 +39,7 @@ get '/opponent_name' do
 end
 
 post '/opponent' do
+    session[:opponent] =  params[opponent]
     if opponent == human
         redirect '/player_2_name'
     else
