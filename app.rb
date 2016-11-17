@@ -4,7 +4,7 @@ require_relative 'random_ai.rb'
 require_relative 'unbeatable_ai.rb'
 require_relative 'sequential_ai.rb'
 require_relative 'board.rb'
-
+require_relative 'console_human.rb'
 enable :sessions
 
   ai = ""
@@ -39,13 +39,33 @@ get '/opponent_name' do
 end
 
 post '/opponent' do
-    session[:opponent] =  params[opponent]
-    if opponent == human
-        redirect '/player_2_name'
-    else
-        redirect '/play_game'
-    end
+	player_2 = params[:player_2]
+
+	if player_2 == "human"
+		session[:player_2] = Human.new("O")
+
+		erb :opponent_name, :locals => { :board => session[:board].board }
+
+	elsif player_2 == "sequential_ai"
+		session[:player_2] = SequentialAi.new("O")
+		session[:name_player_2] = "CPU"
+
+		redirect '/get_move'
+
+	elsif player_2 == "random_ai"
+		session[:player_2] = RandomAi.new("O")
+		session[:name_player_2] = "CPU"
+
+		redirect '/get_move'
+
+	else player_2 == "unbeatable_ai"
+		session[:player_2] = UnbeatableAi.new("O")
+		session[:name_player_2] = "CPU"
+
+		redirect '/get_move'
+	end
 end
+
 
 get '/player_2_name' do
     erb :player_2_name
