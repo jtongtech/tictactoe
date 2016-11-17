@@ -31,11 +31,11 @@ end
 
 post '/player_1_name' do
 	session[:player_1_name] = params[:player_1_name]
-	redirect '/opponent_name'
+	redirect '/opponent_type'
 end
 
-get '/opponent_name' do
-  erb :opponent_name
+get '/opponent_type' do
+  erb :opponent_type
 end
 
 post '/opponent' do
@@ -44,28 +44,33 @@ post '/opponent' do
 	if player_2 == "human"
 		session[:player_2] = Human.new("O")
 
-		erb :opponent_name, :locals => { :board => session[:board].board }
+		erb :player_2_name, :locals => { :board => session[:board].board }
 
 	elsif player_2 == "sequential_ai"
 		session[:player_2] = SequentialAi.new("O")
-		session[:name_player_2] = "CPU"
+		session[:player_2_name] = "CPU"
 
 		redirect '/get_move'
 
 	elsif player_2 == "random_ai"
 		session[:player_2] = RandomAi.new("O")
-		session[:name_player_2] = "CPU"
+		session[:player_2_name] = "CPU"
 
 		redirect '/get_move'
 
 	else player_2 == "unbeatable_ai"
 		session[:player_2] = UnbeatableAi.new("O")
-		session[:name_player_2] = "CPU"
+		session[:player_2_name] = "CPU"
 
 		redirect '/get_move'
 	end
 end
 
+# post '/opponent_type' do
+# 	session[:player_2_name] = params[:player_2]
+
+#     redirect '/get_move'
+# end
 
 get '/player_2_name' do
     erb :player_2_name
@@ -74,6 +79,10 @@ end
 post '/player_2_name' do
     session[:player_2_name] = params[:player_2_name]
 	redirect '/play_game'
+end
+
+get 'get_move' do
+    erb :get_move
 end
 
 get '/play_game' do
