@@ -106,7 +106,7 @@ end
 get '/make_move' do
 	move_spot = params[:move].to_i
 
-	session[:board].update_board((move_spot - 1), session[:current_player].marker)
+	session[:board].update((move_spot - 1), session[:current_player].marker)
 
 	if session[:board].game_won?(session[:current_player].marker) == true
 		player_1 = session[:player_1_name]
