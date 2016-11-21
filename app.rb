@@ -11,6 +11,9 @@ enable :sessions
   ai = ""
 
 
+
+
+
 get '/' do
     session[:board] = Board.new
     #session[:board] = Board.board
