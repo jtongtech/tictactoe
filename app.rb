@@ -5,7 +5,7 @@ require_relative 'unbeatable_ai.rb'
 require_relative 'sequential_ai.rb'
 require_relative 'board.rb'
 require_relative 'console_human.rb'
-require_relative 'console_game.rb'
+require_relative 'game.rb'
 enable :sessions
 
   ai = ""
@@ -132,3 +132,4 @@ get '/make_move' do
 		redirect '/play_game'
 	end	
 end
+
