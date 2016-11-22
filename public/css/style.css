@@ -86,7 +86,7 @@ p {
 }
 
 .board-data {
-  background: limegreen;
+  background: red;
   font-size: 30px; 
   border: black;
 }

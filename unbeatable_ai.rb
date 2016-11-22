@@ -1,37 +1,14 @@
-##### Win: If the player has two in a row, they can place a third to get three in a row.
-
-##### Block: If the opponent has two in a row, the player must play the third themselves to block the opponent.
-
-# Fork: Create an opportunity where the player has two threats to win (two non-blocked lines of 2).
-
-# Blocking an opponent's fork:
-
-# Option 1: The player should create two in a row to force the opponent into defending, as long as it doesn't result in them creating a fork. For example, if "X" has a corner, "O" has the center, and "X" has the opposite corner as well, "O" must not play a corner in order to win. (Playing a corner in this scenario creates a fork for "X" to win.)
-
-# Option 2: If there is a configuration where the opponent can fork, the player should block that fork.
-
-# Center: A player marks the center. (If it is the first move of the game, playing on a corner gives "O" more opportunities to make a mistake and may therefore be the better choice; however, it makes no difference between perfect players.)
-
-# Opposite corner: If the opponent is in the corner, the player plays the opposite corner.
-
-# Empty corner: The player plays in a corner square.
-
-# Empty side: The player plays in a middle square on any of the 4 sides.
-
 class UnbeatableAi
     attr_accessor :marker, :open_spot
-
 
     def initialize(marker)
         @marker = marker
         @open_spot = 10    
-    end
-    
+    end    
 
     def get_move(board)
         @open_spot = 10
         comp_marker = marker
-        random_move = rand(1..9)
 
         if comp_marker == "o"
             player_marker = "x"
@@ -43,22 +20,18 @@ class UnbeatableAi
             move = open_spot
         elsif potential_win_block(board, player_marker) <= 8
             move = open_spot
-         elsif check_for_fork(board) <= 8
+        elsif check_for_fork(board) <= 8
                 # move = open_spot
                 move = check_for_fork(board)
-
         elsif block_opponents_fork(board, comp_marker) <= 8
                 # move = open_spot
             move = block_opponents_fork(board, comp_marker)
-
         elsif check_for_center(board)
-            move = open_spot    
-        # elsif check_for_winning_fork_option(board)
-        #     move = open_spot
-        elsif check_for_empty_corner(board)
             move = open_spot
-        else 
-            random_move
+        elsif check_for_empty_side(board)
+            move = open_spot
+        else check_for_empty_corner(board)
+            move = open_spot
         end
         move
     end
@@ -76,6 +49,7 @@ class UnbeatableAi
         ]
     end
 
+
     def win_positions
         win_positions = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
     end
@@ -83,16 +57,15 @@ class UnbeatableAi
     def potential_win_block(board, current_marker)
 
         win_combinations(board).each_with_index do |winner, index|
-            if winner.count(current_marker) == 2 && winner.count(" ") == 1
-                space_in_winning_line = winner.index(" ")
+            if winner.count(current_marker) == 2 && winner.count("") == 1
+                space_in_winning_line = winner.index("")
                 @open_spot = win_positions[index][space_in_winning_line]
             end
         end
         open_spot
     end
     def check_for_center(board)
-        @open_spot = 10
-        if board[4] == " "
+        if board[4] == ""
             @open_spot = 4
         end
     end
@@ -120,19 +93,7 @@ class UnbeatableAi
             move = 0
 		end
         open_spot
-	end
-
-    # def check_for_winning_fork_option(board)
-    #     if board[0] == " "
-    #         @open_spot = 0
-    #     elsif board[8] == " "
-    #         @open_spot = 8
-    #     elsif board[3] == " "
-    #         @open_spot = 3
-    #     else board[6] == " "
-    #         @open_spot = 6
-    #     end
-    # end
+    end
     def check_for_fork(board)
 		@open_spot = 10
 		fork_line = []
@@ -140,7 +101,7 @@ class UnbeatableAi
 		i = []
 		
 		win_combinations(board).each_with_index do |forking_line, index|
-			if forking_line.count(marker) == 1 && forking_line.count(" ") == 2
+			if forking_line.count(marker) == 1 && forking_line.count("") == 2
 
 				i.push(index)
 			end
@@ -150,15 +111,10 @@ class UnbeatableAi
 			fork_spot.push(win_positions[index])
 		end
 
-# i = [8, 0, 4, 8]
-# i = [0, 4, 8, 8]
-
-# fork_line = [4, 8, 8]
-
 		fork_spot = fork_spot.flatten.sort
 
 		fork_spot.each do |spot|
-			if board[spot] == " "
+			if board[spot] == ""
 				fork_line.push(spot)
 			end
 		end
@@ -169,7 +125,7 @@ class UnbeatableAi
 			open_spot = fork_line.detect { |match| fork_line.count(match) > 1 }
 		end
         open_spot
-	end
+    end
 
     def block_opponents_fork(board, comp_marker)
 		@open_spot = 10
@@ -186,7 +142,7 @@ class UnbeatableAi
 		i = []
 		
 		win_combinations(board).each_with_index do |forking_line, index|
-			if forking_line.count(player_marker) == 1 && forking_line.count(" ") == 2
+			if forking_line.count(player_marker) == 1 && forking_line.count("") == 2
 				fork_line = forking_line
 				i.push(index)
 			end
@@ -197,10 +153,9 @@ class UnbeatableAi
 		end
 
 		fork_spot = fork_spot.flatten
-
 		block_spot = []
 		fork_spot.each do |spot|
-			if board[spot] == " "
+			if board[spot] == ""
 				block_spot.push(spot)
 			end
 		end
@@ -211,35 +166,49 @@ class UnbeatableAi
             open_spot = block_spot.detect {|match| block_spot.count(match) > 1}
         end
         open_spot
-	end
-
-    def check_for_empty_side(board)
-        @open_spot = 10
-        open_side = [1, 3, 5, 7]
-        open_side.each do |open_side|
-            if board[open_side] == " "
-                @open_spot = open_side
-                break
-            end
-        end
-    open_spot
     end
 
     def check_for_empty_corner(board)
         @open_spot = 10
         corners = [0, 2, 6, 8]
         corners.each do |corner|
-            if board[corner] == " "
+            if board[corner] == ""
                 @open_spot = corner
                 break
             else
-               check_for_empty_side(board)
+                check_for_empty_side(board)
             end
         end
     open_spot
     end
 
-    
+    def check_for_empty_side(board)
+        @open_spot = 10
+        open_side = [1, 3, 5, 7]
+        open_side.each do |open_side|
+            if board[open_side] == ""
+                @open_spot = open_side
+                break
+            end
+        end
+    open_spot
+    end
 end
 
-# winning = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+
+
+
+
+
+# winning = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]] 
+#unbeatable ai
+# Win: If the player has two in a row, they can place a third to get three in a row.
+# Block: If the opponent has two in a row, the player must play the third themselves to block the opponent.
+# Fork: Create an opportunity where the player has two threats to win (two non-blocked lines of 2).
+# Blocking an opponent's fork:
+# Option 1: The player should create two in a row to force the opponent into defending, as long as it doesn't result in them creating a fork. For example, if "X" has a corner, "O" has the center, and "X" has the opposite corner as well, "O" must not play a corner in order to win. (Playing a corner in this scenario creates a fork for "X" to win.)
+# Option 2: If there is a configuration where the opponent can fork, the player should block that fork.
+# Center: A player marks the center. (If it is the first move of the game, playing on a corner gives "O" more opportunities to make a mistake and may therefore be the better choice; however, it makes no difference between perfect players.)
+# Opposite corner: If the opponent is in the corner, the player plays the opposite corner.
+# Empty corner: The player plays in a corner square.
+# Empty side: The player plays in a middle square on any of the 4 sides.

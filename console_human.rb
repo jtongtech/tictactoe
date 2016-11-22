@@ -6,14 +6,15 @@ class Human
     end
 
     def get_move(board)
-        # puts "Make your move!"
+        puts "Yeah you, make a move."
         move = gets.chomp.to_i
         move = move - 1
-        if board[move] == " " && move >= 0
-            move
-        else
-            # puts "Try again!"
-            get_move(board)
-        end
-    end
+            if board[move] == "" && move >= 0
+                move
+            else
+                puts "What are you? Some kind of idiot?"
+                get_move(board)
+            end
+    end    
+
 end

@@ -1,13 +1,15 @@
-
-
 <link rel = "stylesheet" href = "css/style.css">
 
 <br><p class = "textcolor2">
 
+<%= player_1_name %> you will be "X", and <%= player_2_name %>, you will be "O" 
 
-Okay player it is your turn.<br></p></center>
+
+
+<br></p></center>
+
  <form action="get_player_move" method="post">
-            <table id='board'>
+            <table id='board'><center>
             	<tr>
                 	<td id='top-left'><input class='board-data' type='submit' name="square" value='<%= board[0] %>'></td>
                 	<td id='top-center'><input class='board-data' type='submit' name="square" value='<%= board[1] %>'></td>
@@ -24,7 +26,4 @@ Okay player it is your turn.<br></p></center>
                 	<td id='bottom-right'><input class='board-data' type='submit' name="square" value='<%= board[8] %>'></td>
             	</tr>
         </table>
-        </form>
-        
-
-
+        </form></center>
