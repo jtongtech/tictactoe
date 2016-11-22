@@ -187,28 +187,3 @@ hr.style-one {
   background-image: linear-gradient(to right, #ccc, #2b3340, #ccc);
   margin: 2% 10% 2% 10%;
 }
-
-/* Extra unused css */
-/*
-#header > a:hover {
-  color: #2b3340;
-}
-
-#header > a:hover {
-  color: white;
-}
-
-.active-container {
-  text-align: center;
-  margin-bottom: 8%;
-}
-
-form {
-  text-align: center;
-}
-
-#results-header {
-  text-align: center;
-  padding-top: 0;
-}
-*/
