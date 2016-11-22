@@ -1,86 +1,88 @@
-require_relative "board.rb"
-require_relative "console_human.rb"
-require_relative "random_ai.rb"
-require_relative "sequential_ai.rb"
-require_relative "unbeatable_ai.rb"
+    require_relative 'board.rb'
+    require_relative 'console_human.rb'
+    require_relative 'console_random_ai.rb'
+    require_relative 'console_sequential_ai.rb'
+    require_relative 'unbeatable_ai.rb'
 
-class Game
+class Console_game
 
     attr_accessor :board, :player_1, :player_2, :current_player
 
-def initialize
+    def initialize
         @board = Board.new
-        @player_1 = Human.new("x")
-        @player_2 = select_player_2
+        @player_1 = Console_human.new("X")
+        @player_2 = who_plays
         @current_player = player_2
-end
-    def select_player_2
-        puts """
-
-            What level of play would you like?
-
-            Press   1 - Human
-                    2 - Random AI
-                    3 - Sequential AI
-                    4 - TIC TAC TOE MASTER
-                Then ENTER!
-                """
-                who = {1 => Human, 2 => RandomAi, 3 => SequentialAi, 4 => UnbeatableAi}
-                choice = gets.chomp.to_i
-                player = who[choice].new("o")
     end
-    # player = select_player_2 
+
+    def who_plays
+        puts """
+        Who are you playing against? (select one)
+
+        1. Human player
+        2. Random
+        3. Sequential
+        4. Unbeatable
+        """
+        who = {1 => Console_human, 2 => RandomAI, 3 => SequentialAI, 4 => UnbeatableAI}
+        player_choice = gets.chomp.to_i
+        player = who[player_choice].new("O")
+    end
+
     def change_player
-        if @current_player == player_1
-            @current_player = player_2
-    else
+          if @current_player == player_1
+           @current_player = player_2
+        else
             @current_player = player_1
         end
-
     end
 
-    def print_board
-        puts ""
-        puts "Let's get started!'"
-        puts ""
-        puts "Sample board with numbers:"
-        puts ""
-        puts " 1 | 2 | 3 "
-        puts "---+---+---"
-        puts " 4 | 5 | 6 "
-        puts "---+---+---"
-        puts " 7 | 8 | 9 "
-        puts ""
-        puts "Game Board:"
-        puts ""
-        puts " #{board.board[0]} | #{board.board[1]} | #{board.board[2]} "
-        puts "---+---+---"
-        puts " #{board.board[3]} | #{board.board[4]} | #{board.board[5]} "
-        puts "---+---+---"
-        puts " #{board.board[6]} | #{board.board[7]} | #{board.board[8]} "
-        puts ""
-
+    def draw_board
+    puts """
         
+    Let's get started!
+
+    Sample board with numbers:
+        
+     1 | 2 | 3
+    ---+---+---
+     4 | 5 | 6
+    ---+---+---
+     7 | 8 | 9
+        
+    Game Board:
+        
+     #{board.grid[0]} | #{board.grid[1]} | #{board.grid[2]}
+    -----------
+     #{board.grid[3]} | #{board.grid[4]} | #{board.grid[5]}
+    -----------
+     #{board.grid[6]} | #{board.grid[7]} | #{board.grid[8]}
+
+    #{current_player.marker} --- Its your move
+        
+        """
     end
 
     def get_move
-        current_player.get_move(board.board)
+        current_player.get_move(board.grid)
     end
 
     def make_move(move)
         board.update(move, current_player.marker)
-        
     end
-    def game_over?
-        board.winner?(current_player.marker) || board.full_board?
+
+    def game_over?        
+            board.winner?(current_player.marker) || board.full_board?
     end
 
     def end_message
-        if board.winner?(current_player.marker)
-            puts "#{current_player.marker} wins. Big deal. Think you're special or something?"
+        if 
+            board.winner?(current_player.marker)
+            puts "#{current_player.marker} is the winner!"
         else
             board.full_board?
-            puts "You tied. Kinda like kissing your sister."
+            puts "It's a tie!"
         end
     end
+
 end

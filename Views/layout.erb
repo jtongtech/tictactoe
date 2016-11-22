@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang='en'>
+    <head>
+        <title><%= @title %></title>
+        <meta charset='utf-8'>
+        <link rel='stylesheet' href='css/styles.css'>
+    </head>
+    <body>
+    <center>
+    	<div class='header-container'>
+            <h1 id='header'><a>Susan Magic Tic Tac Toe</a></h1>
+        </div>
+        <header>
+            <ul class="textstyle">
+                <li>
+                    <a href="/">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href='https://en.wikipedia.org/wiki/Tic-tac-toe' target='blank'>Rules</a>
+                </li>
+                <li>
+                    <a href="/player_1_name">
+                        Play
+                    </a>
+                </li>
+            </ul>
+        </header>
+
+        <form action="get_player_move" method="post">
+            <table id='board'>
+            	<tr>
+                	<td id='top-left'><input class='board-data' type='submit' name="square" value='<%= board[0] %>'></td>
+                	<td id='top-center'><input class='board-data' type='submit' name="square" value='<%= board[1] %>'></td>
+                	<td id='top-right'><input class='board-data' type='submit' name="square" value='<%= board[2] %>'></td>
+            	</tr>
+            	<tr>
+                	<td id='middle-left'><input class='board-data' type='submit' name="square" value='<%= board[3] %>'></td>
+                	<td id='center'><input class='board-data' type='submit' name="square" value='<%= board[4] %>'></td>
+                	<td id='middle-right'><input class='board-data' type='submit' name="square" value='<%= board[5] %>'></td>
+            	</tr>
+            	<tr>
+                	<td id='bottom-left'><input class='board-data' type='submit' name="square" value='<%= board[6] %>'></td>
+                	<td id='bottom-center'><input class='board-data' type='submit' name="square" value='<%= board[7] %>'></td>
+                	<td id='bottom-right'><input class='board-data' type='submit' name="square" value='<%= board[8] %>'></td>
+            	</tr>
+        </table>
+        </form>
+        </center>
+		<%= yield %>
+        <hr class="style-one">
+        <footer class='footer-container'>
+            <h3 id='footer'></h3>
+        </footer>
+        <hr class='style-one'>
+        <center><p id='copyright'>&#169;SUSAN GRAVES 2016</p></center>
+    </body>
+</html>
+

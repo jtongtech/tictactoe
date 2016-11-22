@@ -1,12 +1,3 @@
 <div class="form-container">
-	<p><%= :player_1_name %> is <%= :current_player.marker %> <%= :player_1_name %> it is your turn, please pick a valid spot on the board.</p>
-    
+	<p><%= current_player_name %> is <%= current_player.marker %>. <%= current_player_name %> it is your turn, please pick a valid spot on the board.</p>
 </div>
-
-<!-- 
-<p><%= current_player_name %> is <%= current_player.marker %></p>
-<p><%= current_player_name %> it is your turn, please pick a valid spot.</p><br>
-<form action="get_player_move" method="post">
-    <input type="number" name="move_spot" autofocus="autofocus" placeholder="Pick a space">
-    <input type="submit">
-</form> -->

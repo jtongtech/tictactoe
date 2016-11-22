@@ -1,0 +1,214 @@
+/* Start of body css */
+body {
+  margin: 0;
+}
+li{display:inline;padding-right:1.0rem;font-size:1.50rem;}
+ul{text-align:center;}
+
+p {
+  text-align: center;
+  color: #2b3340;
+}
+
+/* Player One text color on Home page */
+.player-one {
+  color: #ff745c;
+}
+
+/* Player Two text color on Opponent page*/
+.player-two {
+  color: #38aac5;
+}
+
+/* Start of header css - Tic Tac Toe Game */
+.header-container {
+  background-color: seagreen;
+}
+
+#header {
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#header > a {
+  position: relative;
+  color: white;
+  text-decoration: none;
+}
+
+/* Tic Tac Toe Game underline animation */
+#header > a:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+#header > a:hover:before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+/* Start of board css */
+#board { 
+  margin: 0 auto;
+  margin-top: 4%;
+  margin-bottom: 3%;
+}
+
+#top-center, #center, #bottom-center {
+  border-left: 1px solid #1c1c1c;
+  border-right: 1px solid #1c1c1c;
+}
+
+#middle-left, #center, #middle-right {
+  border-top: 1px solid #1c1c1c;
+  border-bottom: 1px solid #1c1c1c;
+}
+
+#board tr td { 
+  width: 100px; 
+  height: 100px; 
+  font-family: Helvetica; 
+  font-size: 30px; 
+  text-align: center; 
+}
+
+.board-data {
+  background: white;
+  font-size: 30px; 
+  border: none;
+}
+
+/* Color of X placed on board and Player One */
+input[value="X"] {
+  color: #ff745c;
+}
+
+/* Color of O placed on board and Player Two */
+input[value="O"] {
+  color: #38aac5;
+}
+
+/* Forms for Home, Opponent page */
+.form-container {
+  text-align: center;
+  margin-bottom: 10%;
+}
+
+/* Play Again - Results css */
+.myButton {
+  -moz-box-shadow: 0px 10px 10px -7px #276873;
+  -webkit-box-shadow: 0px 10px 10px -7px #276873;
+  box-shadow: 0px 10px 10px -7px #276873;
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #599bb3), color-stop(1, #408c99));
+  background:-moz-linear-gradient(top, #599bb3 5%, #408c99 100%);
+  background:-webkit-linear-gradient(top, #599bb3 5%, #408c99 100%);
+  background:-o-linear-gradient(top, #599bb3 5%, #408c99 100%);
+  background:-ms-linear-gradient(top, #599bb3 5%, #408c99 100%);
+  background:linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#599bb3', endColorstr='#408c99',GradientType=0);
+  background-color:#599bb3;
+  -moz-border-radius:8px;
+  -webkit-border-radius:8px;
+  border-radius:8px;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:16px;
+  font-weight:bold;
+  padding:6px 13px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #3d768a;
+}
+.myButton:hover {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #408c99), color-stop(1, #599bb3));
+  background:-moz-linear-gradient(top, #408c99 5%, #599bb3 100%);
+  background:-webkit-linear-gradient(top, #408c99 5%, #599bb3 100%);
+  background:-o-linear-gradient(top, #408c99 5%, #599bb3 100%);
+  background:-ms-linear-gradient(top, #408c99 5%, #599bb3 100%);
+  background:linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#408c99', endColorstr='#599bb3',GradientType=0);
+  background-color:#408c99;
+}
+.myButton:active {
+  position:relative;
+  top:1px;
+}
+
+/* Start of Results Header - Both Win and Tie */
+.results-header {
+  text-decoration: underline;
+  font-size: large;
+}
+
+.results-container {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 1%;
+}
+
+/* Start of footer css */
+#footer {
+  text-align: center;
+  margin: 0;
+  padding-top: 30px;
+  padding-bottom: 25px;
+}
+
+#footer > a {
+  position: relative;
+  color: black;
+  text-decoration: none;
+}
+
+#footer > a:hover {
+  color: black;
+  text-decoration: underline;
+}
+
+hr.style-one {
+  border: 0;
+  height: 1px;
+  background: #333;
+  background-image: linear-gradient(to right, #ccc, #2b3340, #ccc);
+  margin: 2% 10% 2% 10%;
+}
+
+/* Extra unused css */
+/*
+#header > a:hover {
+  color: #2b3340;
+}
+
+#header > a:hover {
+  color: white;
+}
+
+.active-container {
+  text-align: center;
+  margin-bottom: 8%;
+}
+
+form {
+  text-align: center;
+}
+
+#results-header {
+  text-align: center;
+  padding-top: 0;
+}
+*/

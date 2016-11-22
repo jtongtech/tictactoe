@@ -1,0 +1,17 @@
+<div class="form-container">
+	<p>Welcome, <%= player_1_name %>!  You will be X.</p>
+	
+	<form action='choose_opponent' method='post'>
+	    <p>Player <span class="player-two">Two</span> will be O<br>
+		<br>
+		Choose your opponent below:
+		</p>
+	    <select autofocus="autofocus" name='player_2'>
+	        <option value='human'>Human</option>
+	        <option value='sequential_ai'>Easy</option>
+	        <option value='random_ai'>Medium</option>
+	        <option value='unbeatable_ai'>Hard</option>
+	    </select>
+	    <input type="submit" value="Submit">
+	</form>
+</div>

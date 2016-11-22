@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang='en'>
+    <head>
+        <title><%= @title %></title>
+        <meta charset='utf-8'>
+        <link rel='stylesheet' href='css/styles.css'>
+    </head>
+    <body>
+    	<div class='header-container'>
+            <h1 id='header'><a href='/'>Susan Magic Tic Tac Toe</a></h1>
+        </div>
+  <header>
+
+            <ul class="textstyle">
+                <li>
+                    <a href="/">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href='https://en.wikipedia.org/wiki/Tic-tac-toe' target='blank'>Rules</a>      
+                </li>
+                <li>
+                    <a href="/player_1_name">
+                        Play
+                    </a>
+                </li>
+            </ul>
+    </header>
+
+        <table id='board'>
+            <tr>
+                <td id='top-left'><%= board[0] %></td>
+                <td id='top-center'><%= board[1] %></td>
+                <td id='top-right'><%= board[2] %></td>
+            </tr>
+            <tr>
+                <td id='middle-left'><%= board[3] %></td>
+                <td id='center'><%= board[4] %></td>
+                <td id='middle-right'><%= board[5] %></td>
+            </tr>
+            <tr>
+                <td id='bottom-left'><%= board[6] %></td>
+                <td id='bottom-center'><%= board[7] %></td>
+                <td id='bottom-right'><%= board[8] %></td>
+            </tr>
+        </table>
+
+		<%= yield %>
+        <hr class="style-one">
+        <footer class='footer-container'>
+            <h3 id='footer'><a>Enjoy the Game!</a></h3>
+        </footer>
+        <hr class='style-one'>
+        <p id='copyright'>&#169;SUSAN GRAVES 2016</p>
+    </body>
+</html>
