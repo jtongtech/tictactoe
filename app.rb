@@ -59,10 +59,12 @@ post '/choose_opponent' do
 end
 
 get '/player_2_name' do
+	session[:player_2_name] = params[:player_2]
     erb :player_2_name, :layout => :home_layout, :locals => { :board => session[:board].board_positions, :player_2_name => session[:player_2_name] }
 end
 
 post '/player_2_name' do
+	session[:player_2_name] = params[:player_2]
 	session[:current_player_name] = session[:player_1_name]
     redirect '/get_move'
 end
