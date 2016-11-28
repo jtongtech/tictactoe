@@ -1,73 +1,139 @@
-class UnbeatableAi
-    attr_accessor :marker, :open_spot
+require 'sinatra'
+require 'rubygems'
+require_relative 'new_board.rb'
+require_relative 'human.rb'
+require_relative 'console_random_ai.rb'
+require_relative 'console_sequential_ai.rb'
+require_relative 'unbeatable_ai.rb'
 
-    def initialize(marker)
-        @marker = marker
-        @open_spot = 10    
-    end    
 
-    def get_move(board)
-        @open_spot = 10
-        comp_marker = marker
+enable :sessions
+play_board = Board.new(["","","","","","","","",""])
 
-        if comp_marker == "o"
-            player_marker = "x"
+ai = ""
+
+get '/' do
+    session[:board] = Board.new(["","","","","","","","",""])
+	
+    erb :home, :layout => :home_layout, :locals => { :board => session[:board].board_positions }
+end
+
+get '/player_1_name' do
+    erb :player_1_name, :layout => :home_layout, :locals => { :board => session[:board].board_positions }
+end
+
+post '/player_1_name' do
+	session[:player_1_name] = params[:player_1]
+	session[:player_1] = Console_human.new("X")
+	session[:current_player] = session[:player_1]
+	session[:current_player_name] = session[:player_1_name]
+
+    erb :opponent, :layout => :home_layout, :locals => { :board => session[:board].board_positions, :player_1_name => session[:player_1_name] }
+    # redirect '/choose_opponent'
+end
+
+post '/choose_opponent' do
+	player_2 = params[:player_2]
+
+	if player_2 == "human"
+		session[:player_2] = Console_human.new("O")
+		
+		erb :player_2_name, :layout => :home_layout, :locals => { :board => session[:board].board_positions }
+		session[:player_2_name] = session[:player_2]
+
+        redirect '/player_2_name'
+
+	elsif player_2 == "sequential_ai"
+		session[:player_2] = SequentialAI.new("O")
+		session[:player_2_name] = "Easy"
+		
+		redirect '/get_move'
+
+	elsif player_2 == "random_ai"
+		session[:player_2] = RandomAI.new("O")
+		session[:player_2_name] = "Medium"
+
+		redirect '/get_move'
+
+	else player_2 == "unbeatable_ai"
+		session[:player_2] = UnbeatableAI.new("O")
+		session[:player_2_name] = "Hard"
+		
+		redirect '/get_move'
+	end
+end
+
+get '/player_2_name' do
+    erb :player_2_name, :layout => :home_layout, :locals => { :board => session[:board].board_positions, :player_2_name => session[:player_2_name] }
+end
+
+post '/player_2_name' do
+	session[:player_2_name] = params[:player_2]
+	
+    redirect '/get_move'
+end
+
+get '/get_move' do
+	move = session[:current_player].get_move(session[:board].grid)
+    
+	if move == "NO"
+	erb :get_move, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
+          
+    	elsif session[:board].valid_space?(move)
+            redirect '/make_move?move=' + move.to_s 
         else
-            player_marker = "o"
-        end
+        	redirect '/get_move'
+	end
+end
 
-        if potential_win_block(board, comp_marker) <= 8
-            move = open_spot
-        elsif potential_win_block(board, player_marker) <= 8
-            move = open_spot
-        elsif check_for_center(board)
-            move = open_spot
-        else check_for_empty_corner(board)
-            move = open_spot
-        end
-        move
-    end
+post '/get_player_move' do
+    move = params[:square].to_i
+	# puts "move is #{move}"
 
-    def win_combinations(board)
-        [
-            [board[0],board[1],board[2]],
-            [board[3],board[4],board[5]],
-            [board[6],board[7],board[8]],
-            [board[0],board[3],board[6]],
-            [board[1],board[4],board[7]],
-            [board[2],board[5],board[8]],
-            [board[0],board[4],board[8]],
-            [board[2],board[4],board[6]]
-        ]
+    if session[:board].valid_space?(move)
+        redirect '/make_move?move=' + move.to_s
+		
+    else
+        redirect '/get_move'
     end
 
-    def win_positions
-        win_positions = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
-    end
+end
 
-    def potential_win_block(board, current_marker)
+get '/make_move' do
+	move = params[:move].to_i
+	session[:board].update((move - 1), session[:current_player].marker)
 
-        win_combinations(board).each_with_index do |winner, index|
-            if winner.count(current_marker) == 2 && winner.count("") == 1
-                space_in_winning_line = winner.index("")
-                @open_spot = win_positions[index][space_in_winning_line]
-            end
-        end
-        open_spot
-    end
-    def check_for_center(board)
-        if board[4] == ""
-            @open_spot = 4
-        end
-    end
-    def check_for_empty_corner(board)
-        corners = [0, 2, 6, 8]
-        corners.each do |corner|
-            if board[corner] == ""
-                @open_spot = corner
-                break
-            end
-        end
-    open_spot
-    end
+	erb :get_move, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
+
+	if session[:board].winner?(session[:current_player].marker) == true
+		player_1 = session[:player_1_name]
+		player_2 = session[:player_2_name]
+		winner = session[:current_player_name]
+		
+		erb :win, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
+
+	elsif session[:board].full_board? == true
+		player_1 = session[:player_1_name]
+		player_2 = session[:player_2_name]
+		winner = "Tie"
+		erb :tie, :locals => { :board => session[:board].board_positions }
+		
+	else redirect '/change_player'
+		
+	end
+end
+
+get '/change_player' do
+	
+		if session[:current_player].marker == "X"
+			session[:current_player] = session[:player_2]
+			session[:current_player_name] = session[:player_2_name]
+		else
+			session[:current_player] = session[:player_1]
+			session[:current_player].marker = "X"
+			session[:current_player_name] = session[:player_1_name]
+		end
+		redirect '/get_move'
+		
+	
 end
