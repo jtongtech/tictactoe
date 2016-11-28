@@ -133,6 +133,6 @@ get '/change_player' do
 			session[:current_player_name] = session[:player_1_name]
 		end
 
-		erb :get_move, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
+		redirect '/get_move'
 	
 end
