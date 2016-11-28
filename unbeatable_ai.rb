@@ -34,32 +34,36 @@ class UnbeatableAI
 
         if check_win_block(board, comp_marker) <= 8
             move = check_win_block(board, comp_marker)
+			move = move + 1
 
             elsif check_win_block(board, player_marker) <=8
                 move = check_win_block(board, player_marker)
+				move = move + 1
 
             elsif check_for_fork(board) <= 8
                 move = check_for_fork(board)
+				move = move + 1
 
             elsif block_opponents_fork(board, comp_marker) <= 8
                 move = block_opponents_fork(board, comp_marker)
+				move = move + 1
 
-			elsif check_for_center(board) #<= 8
+			elsif check_for_center(board) <= 8
                 move = check_for_center(board)
+				move = move + 1
 
-			
-
-			elsif check_empty_side(board) <= 8
-				move = check_empty_side(board)
 			elsif opponent_corner(board) <= 8
 				move = opponent_corner(board)
-			  
+				move = move + 1
+
 			elsif check_empty_corner(board) <= 8
 				move = check_empty_corner(board)
-
-		
+				move = move + 1
 			
-
+			elsif check_empty_side(board) <= 8
+				move = check_empty_side(board)
+				move = move + 1
+			
             else
                 move = board.index("")
             end
@@ -157,28 +161,43 @@ class UnbeatableAI
 		fork_spot = fork_spot.flatten
 
 		block_spot = []
-		fork_spot.each do |spot|
-			if board[spot] == ""
-				block_spot.push(spot)
+		
+		if fork_spot.include?(4)
+			move = 10
+		else
+			fork_spot.each do |spot|
+			if board[spot] == "X" && board[spot + 1] == ""
+				block_spot.push(spot + 1)
+			else
+				move = 10
 			end
 		end
 
-        if block_spot.detect {|match| block_spot.count(match) > 1} == nil
-            open_spot = 10
-        else
-            open_spot = block_spot.detect {|match| block_spot.count(match) > 1}
+		if block_spot == []
+			move = 10
+		else
+			move = block_spot.shift
+		end
+
+        # if block_spot.detect {|match| block_spot.count(match) > 1} == nil
+        #     open_spot = 10
+        # else
+        #     open_spot = block_spot.detect {|match| block_spot.count(match) > 1}
         end
-        open_spot
+        move
 	end
 
     def check_for_center(board)
-		if board[4] == ""
-			@open_spot = 4
-        end
+		
+		if board[4] != "X" && board[4] != "O"
+			move = 4
+        else
+			move = 10
+		end
 	end
 
     def opponent_corner(board)
-		# @open_spot = 10
+		
         comp_marker = marker
 		
 		if comp_marker == "O"
@@ -188,54 +207,58 @@ class UnbeatableAI
 		end
 
 		if board[0] == player_marker && board[8] == ""
-			@open_spot = 8
-            # move = 8
+			move = 8
 		elsif board[2] == player_marker && board[6] == ""
-			@open_spot = 6
-            # move = 6
+            move = 6
 		elsif board[6] == player_marker && board[2] == ""
-			@open_spot = 2
-            # move = 2
+            move = 2
 		elsif board[8] == player_marker && board[0] == ""
-			@open_spot = 0
-            # move = 0
+            move = 0
+		else
+			move = 10
 		end
-        open_spot
+		move
 	end
 
     def check_empty_corner(board)
-		# @open_spot = 10
-        corners = [0, 2, 6, 8]
-		corner_options = []
-
-		corners.each do |corner|
-			if board[corner] == ""
-                corner_options.push(corner)
-			unless board[4] != ""
-				then 
-
-				# check_empty_side(board)
-			end
-			end
+		if board[0] != "X" && board[0] != "O"
+			move = 0
+		elsif board[2] != "X" && board[2] != "O"
+			move = 2
+		elsif board[6] != "X" && board[6] != "O"
+			move = 6
+		elsif board[8] != "X" && board[8] != "O"
+			move = 8
+		else
+			move = 10
 		end
-		open_spot = corner_options.shift
+        # corners = [0, 2, 6, 8]
+		# corner_options = []
+
+		# corners.each do |corner|
+		# 	if board[corner] != "X" || board[corner] != "O"
+        #         corner_options.push(corner)
+		# 	unless board[4] != ""
+		# 		then 
+
+		# 		check_empty_side(board)
+		# 	end
+		# 	end
+		# end
+		# open_spot = corner_options.shift
 	end
 
 	def check_empty_side(board)
-        # @open_spot = 10
 		sides = [1, 3, 5, 7]
 		side_options = []
 
 		sides.each do |side|
-			if board[side] == ""
+			if board[side] != "X" && board[side] != "O"
 				side_options.push(side)
 			end
 		end
-		open_spot = side_options.shift
+		first_side_available = side_options.shift
 	end
     
   
 end
-
-
-
