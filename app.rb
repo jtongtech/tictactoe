@@ -35,7 +35,7 @@ post '/choose_opponent' do
 		session[:player_2] = Console_human.new("O")
 		
 		erb :player_2_name, :layout => :home_layout, :locals => { :board => session[:board].board_positions }
-		session[:player_2_name] = params[:player_2]
+		session[:player_2_name] = session[:player_2]
         redirect '/player_2_name'
 
 	elsif player_2 == "sequential_ai"
@@ -59,7 +59,7 @@ post '/choose_opponent' do
 end
 
 get '/player_2_name' do
-	session[:player_2_name] = params[:player_2]
+	# session[:player_2_name] = params[:player_2]
     erb :player_2_name, :layout => :home_layout, :locals => { :board => session[:board].board_positions, :player_2_name => session[:player_2_name] }
 end
 
