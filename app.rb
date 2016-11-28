@@ -67,7 +67,6 @@ end
 
 post '/player_2_name' do
 	session[:player_2_name] = params[:player_2]
-	session[:current_player_name] = session[:player_1_name]
     redirect '/get_move'
 end
 
@@ -78,7 +77,7 @@ get '/get_move' do
 	erb :get_move, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
           
     	elsif session[:board].valid_space?(move)
-            redirect '/make_move' #+ move.to_s 
+            redirect '/make_move?move=' + move.to_s 
         else
         	redirect '/get_move'
 	end
@@ -98,9 +97,7 @@ post '/get_player_move' do
 end
 
 get '/make_move' do
-	
 	move = params[:move].to_i
-	puts "move is #{move}"
 	session[:board].update((move - 1), session[:current_player].marker)
 
 	erb :get_move, :locals => { :current_player => session[:current_player], :current_player_name => session[:current_player_name], :board => session[:board].board_positions }
@@ -124,7 +121,6 @@ get '/make_move' do
 end
 
 get '/change_player' do
-	
 		if session[:current_player].marker == "X"
 			session[:current_player] = session[:player_2]
 			session[:current_player_name] = session[:player_2_name]
@@ -133,7 +129,6 @@ get '/change_player' do
 			session[:current_player].marker = "X"
 			session[:current_player_name] = session[:player_1_name]
 		end
-
 		redirect '/get_move'
 	
 end
