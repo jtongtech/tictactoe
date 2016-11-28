@@ -29,33 +29,34 @@ post '/player_1_name' do
 end
 
 post '/choose_opponent' do
-	player_2 = params[:player_2]
+    player_2 = params[:player_2]
 
-	if player_2 == "human"
-		session[:player_2] = Console_human.new("O")
-		
-		erb :player_2_name, :layout => :home_layout, :locals => { :board => session[:board].board_positions }
-		session[:player_2_name] = session[:player_2]
-        redirect '/player_2_name'
+    if player_2 == "human"
+        session[:player_2] = Console_human.new("O")
+        
+        erb :player_2_name, :layout => :home_layout, :locals => { :board => session[:board].board_positions }
+        session[:player_2_name] = session[:player_2]
 
-	elsif player_2 == "sequential_ai"
-		session[:player_2] = SequentialAI.new("O")
-		session[:player_2_name] = "Easy Opponent"
+       redirect '/player_2_name'
 
-		redirect '/get_move'
+    elsif player_2 == "sequential_ai"
+        session[:player_2] = SequentialAI.new("O")
+        session[:player_2_name] = "Easy"
+        
+        redirect '/get_move'
 
-	elsif player_2 == "random_ai"
-		session[:player_2] = RandomAI.new("O")
-		session[:player_2_name] = "Medium Opponent"
+    elsif player_2 == "random_ai"
+        session[:player_2] = RandomAI.new("O")
+        session[:player_2_name] = "Medium"
 
-		redirect '/get_move'
+        redirect '/get_move'
 
-	else player_2 == "unbeatable_ai"
-		session[:player_2] = UnbeatableAI.new("O")
-		session[:player_2_name] = "Hard Opponent"
-
-		redirect '/get_move'
-	end
+    else player_2 == "unbeatable_ai"
+        session[:player_2] = UnbeatableAI.new("O")
+        session[:player_2_name] = "Hard"
+        
+        redirect '/get_move'
+    end
 end
 
 get '/player_2_name' do
