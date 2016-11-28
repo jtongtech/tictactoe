@@ -1,1 +1,1 @@
-web: bundle exec ruby coinchangerapp.rb
+web: bundle exec ruby app.rb
