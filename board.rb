@@ -41,3 +41,13 @@ class Board
         grid[2] == marker && grid[4] == marker && grid[6] == marker
     end
 end
+
+
+# grid[0] == marker && grid[1] == marker && grid[2] == marker ||
+#         grid[3] == marker && grid[4] == marker && grid[5] == marker ||
+#         grid[6] == marker && grid[7] == marker && grid[8] == marker ||
+#         grid[0] == marker && grid[3] == marker && grid[6] == marker ||
+#         grid[1] == marker && grid[4] == marker && grid[7] == marker ||
+#         grid[2] == marker && grid[5] == marker && grid[8] == marker ||
+#         grid[0] == marker && grid[4] == marker && grid[8] == marker ||
+#         grid[2] == marker && grid[4] == marker && grid[6] == marker

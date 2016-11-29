@@ -76,12 +76,13 @@ class TestBoard < Minitest::Test
     #     assert_equal(false, board.full_board?)
     # end
 
-    # def test_for_winner_for_X
-    #     board = Board.new()
-    #     board.grid = ["X","X","X"," "," "," "," "," "," "]
-    #     symbol = "X"
-    #     assert_equal(true, board.winner?(symbol))
-    # end
+    def test_for_winner_for_X
+        board = Board.new(3)
+        board.grid = ["X","X","X"," "," "," "," "," "," "]
+        symbol = "X"
+        assert_equal(true, board.winner?(symbol))
+    end
+
     # def test_for_winner_for_O
     #     board = Board.new()
     #     board.grid = ["O","O","O"," "," "," "," "," "," "]
