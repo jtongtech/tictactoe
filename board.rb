@@ -1,8 +1,8 @@
 class Board
     attr_accessor :grid
 
-    def initialize
-        @grid = Array.new(9, "")
+    def initialize(size)
+        @grid = Array.new((size * size), " ")
     end
 
     def update(position, marker)
